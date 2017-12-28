@@ -1,3 +1,24 @@
-<h1><%= current_user.email %></h1>
+<div class="greeting">
+    <h1>Welcome, <%= current_user.email %>!</h1>
+</div>
 
-<%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
+<br></br>
+
+<div class="artistList">
+    <h2>Artists</h2>
+    <% if current_user.artists.empty? %>
+        <p>No Artists currently added</p>
+    <% else %>
+        <ul>
+            <% current_user.artists.each do |artist| %>
+                <li><%= link_to artist.name, artist_path(artist) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
+
+<br></br>
+
+<div class="links">
+    <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
+</div>
