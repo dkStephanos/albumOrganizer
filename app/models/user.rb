@@ -16,4 +16,12 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end      
   end
+  
+  def favorite_songs
+    self.songs.select do |song|
+      if song.is_favorite
+        song
+      end
+    end
+  end
 end

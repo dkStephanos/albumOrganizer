@@ -7,7 +7,7 @@
 <br></br>
 
 <div class="artistList">
-    <h2>Artists</h2>
+    <h2>Your Artists</h2>
     <% #binding.pry %>
     <% if current_user.artists.empty? %>
         <p>No Artists currently added</p>
@@ -22,6 +22,22 @@
 
 <br></br>
 
+<div class="songList">
+    <h2>Favorite Songs</h2>
+    <% if current_user.favorite_songs.empty? %>
+        <p>No Favorited Songs</p>
+    <% else %>
+        <ul>
+            <% current_user.favorite_songs.each do |song| %>
+                <li><%= link_to ("#{song.name} [#{song.time}]"), song_path(song) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
+
+<br></br>
+
 <div class="links">
     <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
+    <%= link_to("All Artists", artists_path) %>
 </div>

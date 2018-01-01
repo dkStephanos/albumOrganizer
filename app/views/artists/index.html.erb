@@ -1,0 +1,18 @@
+<div class="artistList">
+    <h2>All Artists</h2>
+    <% if @artists.empty? %>
+        <p>No Artists currently added</p>
+    <% else %>
+        <ul>
+            <% @artists.each do |artist| %>
+                <li><%= link_to artist.name, artist_path(artist) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
+
+<br></br>
+
+<div class="links">
+    <%= link_to "Back to User", user_path(current_user) %>
+</div>

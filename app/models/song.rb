@@ -13,4 +13,8 @@ class Song < ApplicationRecord
         #Return the formatted song time
         "#{mins}:#{secs}"
     end
+    
+    def artist
+        self.album.artist
+    end
 end

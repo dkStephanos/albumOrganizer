@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    background: url(abstract-music-rock-bw.jpg);
+    background-size: 100% 1000px;
+    background-repeat: no-repeat;
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    display: block;
+    
+}
+
+.greeting, .artistList, .albumList, .songList, .links {
+    font-family: "Arial Black", Serif;
+}
+
+h1 {
+    font-family: "Arial Black", Serif;
+    text-shadow: 1px 1px indigo;
+    text-decoration: underline;
+}
+
+p {
+    font-weight: bold;
+    font-size: 125%;
+}
