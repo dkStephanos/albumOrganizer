@@ -1,3 +1,5 @@
+<% require 'pry' %>
+
 <div class="greeting">
     <h1>Welcome, <%= current_user.email %>!</h1>
 </div>
@@ -6,6 +8,7 @@
 
 <div class="artistList">
     <h2>Artists</h2>
+    <% binding.pry %>
     <% if current_user.artists.empty? %>
         <p>No Artists currently added</p>
     <% else %>

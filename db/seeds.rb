@@ -1,6 +1,8 @@
-# Creates artist and associates it to second user(facebook log in)
+require 'pry'
+# Creates artist, user, and association
 beatles = Artist.create(name: "The Beatles", bio: "The greatest band of all time.")
-UserArtist.create(user_id: 2, artist_id: beatles.id)
+user = User.create(email: "koi@me.com", password: "password", password_confirmation: "password")
+usr_btls = UserArtist.create(user_id: user.id, artist_id: beatles.id)
 
 # Creates albums for artist
 magicalMysteryTour = beatles.albums.create(name: "The Magical Mystery Tour", release_date: 1967)
