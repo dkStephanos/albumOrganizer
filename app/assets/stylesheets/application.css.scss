@@ -26,8 +26,13 @@ body {
     
 }
 
-.greeting, .artistList, .albumList, .songList, .links {
+.greeting {
     font-family: "Arial Black", Serif;
+}
+
+.artistList, .albumList, .songList, .links {
+    font-family: "Arial Black", Serif;
+    overflow: auto;
 }
 
 h1 {
