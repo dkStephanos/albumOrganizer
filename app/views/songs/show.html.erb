@@ -1,0 +1,12 @@
+<div class="songData">
+    <h1><%= @song.name %></h1>
+    <p><%= @song.time %></p>
+</div>
+
+<br></br>
+
+<div class="links">
+    <%= link_to "Back to Artist", artist_path(@song.album.artist) %>
+    <%= link_to "Back to Album", album_path(@song.album) %>
+    <%= link_to "Back to User", user_path(current_user) %>
+</div>
