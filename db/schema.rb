@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20171228232159) do
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.integer "length"
-    t.boolean "is_favorite"
+    t.boolean "is_favorite", default: false
     t.integer "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
