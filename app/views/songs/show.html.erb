@@ -2,6 +2,14 @@
     <h1><%= @song.name %></h1>
     <p>Artist: <%= @song.artist.name %></p>
     <p>Album: <%= @song.album.name %></p>
+    
+    <% if @song.user == current_user %>
+        <p>Favorited: <%= @song.is_favorite.to_s.capitalize %></p>
+        
+        <br></br>
+        
+        <%= link_to "Edit Song", edit_song_path(@song) %>
+    <% end %>
 </div>
 
 <br></br>

@@ -16,11 +16,11 @@
   <%= f.text_field :name %></div>
 
   <div class="field"><%= f.label :length, "Length(in seconds):" %><br>
-  <%= f.text_area :length %></div>
+  <%= f.text_field :length %></div>
   
   <% if !params[:album_id] %>
       <div class="field"><%= f.label :album_id, "Album:" %><br>
-      <%= f.collection_select(:album_id, Artist.all, :id, :name) %></div>
+      <%= f.collection_select(:album_id, Album.all, :id, :name) %></div>
   
       <br></br>
   <% end %>
