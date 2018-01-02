@@ -5,7 +5,7 @@
     <p>Genre: <%= @song.genre.name %></p>
     
     <% if user_song?(@song) %>
-        <p>Favorited: <%= @song.is_favorite.to_s.capitalize %></p>
+        <p>Favorited: <%= favorited(@song) %></p>
         
         <br></br>
         
