@@ -11,7 +11,6 @@ class AlbumsController < ApplicationController
     end
     
     def new
-        #binding.pry
         @album = Album.new
     end
     
