@@ -1,3 +1,5 @@
+require 'pry'
+
 class AlbumsController < ApplicationController
     
     def show
@@ -9,6 +11,7 @@ class AlbumsController < ApplicationController
     end
     
     def new
+        #binding.pry
         @album = Album.new
     end
     

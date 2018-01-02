@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :songs
   resources :albums
-  resources :user_artists
   resources :artists
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'application#welcome'
@@ -11,4 +10,8 @@ Rails.application.routes.draw do
   get '/welcome' => 'application#welcome'
   
   resources :users, :only => [:show]
+  
+  resources :artists do
+    resources :albums, :only => [:new]
+  end
 end

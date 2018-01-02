@@ -1,3 +1,5 @@
+require 'pry'
+
 class ArtistsController < ApplicationController
     
     def show
@@ -14,6 +16,7 @@ class ArtistsController < ApplicationController
     
     def edit
         set_artist
+        @artist.albums.build
     end
     
     def create
@@ -56,5 +59,5 @@ class ArtistsController < ApplicationController
     def artist_params
         params.require(:artist).permit(:name, :bio)
     end
-        
+
 end
