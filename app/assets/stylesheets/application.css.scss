@@ -28,11 +28,13 @@ body {
 
 .greeting {
     font-family: "Arial Black", Serif;
+    padding-left: 20px;
 }
 
 .artistList, .albumList, .songList, .songData, .albumData, .artistData {
     font-family: "Arial Black", Serif;
     overflow: auto;
+    padding-left: 20px;
     
 }
 
