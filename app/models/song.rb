@@ -2,7 +2,7 @@ require 'pry'
 
 class Song < ApplicationRecord
     
-    has_one :genre
+    belongs_to :genre
     belongs_to :album
     
     accepts_nested_attributes_for :genre
