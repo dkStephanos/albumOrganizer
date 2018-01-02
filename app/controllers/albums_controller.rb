@@ -19,6 +19,7 @@ class AlbumsController < ApplicationController
     end
     
     def create
+        binding.pry
         @album = Album.new(album_params)
         respond_to do |format|
           if @album.save

@@ -1,30 +1,33 @@
 <%= form_for(@song) do |f| %>
-  <% if @song.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
-
-      <ul>
-      <% @song.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-  <div class="field"> <%= f.label :name, "Name:" %><br>
-  <%= f.text_field :name %></div>
-
-  <div class="field"><%= f.label :length, "Length(in seconds):" %><br>
-  <%= f.text_field :length %></div>
-  
-  <% if !params[:album_id] %>
-      <div class="field"><%= f.label :album_id, "Album:" %><br>
-      <%= f.collection_select(:album_id, Album.all, :id, :name) %></div>
-  
-      <br></br>
-  <% end %>
-
-  <div class="actions"><%= f.submit 'Submit', :class => 'btn btn-primary' %></div>
+    <% if @song.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+        
+            <ul>
+                <% @song.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    
+    
+    <div class="field"> <%= f.label :name, "Name:" %><br>
+    <%= f.text_field :name %></div>
+    
+    <div class="field"><%= f.label :length, "Length(in seconds):" %><br>
+    <%= f.text_field :length %></div>
+    
+    <div class="field"><%= f.label :album_id, "Album:" %><br>
+    <%= f.collection_select(:album_id, Album.all, :id, :name, {:selected => params[:album_id]}) %></div>
+    
+    <br></br>
+    
+    <div class="field"><%= f.label :is_favorite, "Add to Favorites:" %>
+    <%= f.check_box :is_favorite %></div>
+    
+    <br></br>
+    
+    <div class="actions"><%= f.submit 'Submit', :class => 'btn btn-primary' %></div>
 
 <% end %>
