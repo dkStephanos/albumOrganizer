@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   resources :users, :only => [:show]
   
   resources :artists do
-    resources :albums, :only => [:new]
+    resources :albums, :only => [:index, :show, :new, :edit]
   end
   
   resources :albums do
-    resources :songs, :only => [:new]
+    resources :songs, :only => [:index, :show, :new, :edit]
   end
 end

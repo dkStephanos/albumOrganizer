@@ -12,7 +12,7 @@
     <% else %>
         <ul>
             <% @artist.albums.each do |album| %>
-                <li><%= link_to album.name, album_path(album) %></li>
+                <li><%= link_to album.name, artist_album_path(@artist, album) %></li>
             <% end %>
         </ul>
     <% end %>
