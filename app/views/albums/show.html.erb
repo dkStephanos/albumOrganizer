@@ -1,8 +1,16 @@
 <div class="albumData">
     <h1><%= @album.name %></h1>
+    <p>Released: <%= @album.release_date %></p>
+    <% if !@album.genres.empty? %>
+        <p>Genres: 
+            <ul>
+                <% @album.genres.each do |genre| %>
+                    <li><%= genre.name %></li>
+                <% end %>
+            </ul>
+        </p>
+    <% end %>
 </div>
-
-<br></br>
 
 <div class="songList">
     <h2>Songs</h2>

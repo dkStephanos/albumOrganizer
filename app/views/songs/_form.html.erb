@@ -21,6 +21,9 @@
     <div class="field"><%= f.label :album_id, "Album:" %><br>
     <%= f.collection_select(:album_id, Album.all, :id, :name, {:selected => params[:album_id]}) %></div>
     
+    <div class="field"><%= f.label :genre_name, "Genre:" %><br>
+    <%= f.text_field :genre_name %></div>
+    
     <br></br>
     
     <div class="field"><%= f.label :is_favorite, "Add to Favorites:" %>

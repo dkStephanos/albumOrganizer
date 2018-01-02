@@ -1,6 +1,11 @@
+require 'pry'
+
 class Song < ApplicationRecord
     
+    has_one :genre
     belongs_to :album
+    
+    accepts_nested_attributes_for :genre
     
     validates :name, presence: true
     validates :length, presence: true
@@ -20,5 +25,15 @@ class Song < ApplicationRecord
     
     def user
         self.artist.user
+    end
+    
+    def genre_name=(genre)
+       self.genre = Genre.find_or_create_by(name: genre) 
+    end
+    
+    def genre_name
+        if self.genre
+            self.genre.name
+        end
     end
 end

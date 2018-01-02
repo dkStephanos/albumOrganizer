@@ -1,3 +1,5 @@
+require 'pry'
+
 class SongsController < ApplicationController
     
     def show
@@ -48,6 +50,6 @@ class SongsController < ApplicationController
     end
     
     def song_params
-        params.require(:song).permit(:name, :length, :is_favorite, :album_id)
+        params.require(:song).permit(:name, :length, :is_favorite, :album_id, :genre_name)
     end
 end

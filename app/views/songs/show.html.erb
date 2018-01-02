@@ -2,6 +2,7 @@
     <h1><%= @song.name %></h1>
     <p>Artist: <%= @song.artist.name %></p>
     <p>Album: <%= @song.album.name %></p>
+    <p>Genre: <%= @song.genre.name %></p>
     
     <% if @song.user == current_user %>
         <p>Favorited: <%= @song.is_favorite.to_s.capitalize %></p>
