@@ -40,6 +40,7 @@ class ArtistsController < ApplicationController
     end
     
     def destroy
+        set_artist
         @artist.destroy
         respond_to do |format|
           format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
