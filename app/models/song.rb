@@ -17,4 +17,8 @@ class Song < ApplicationRecord
     def artist
         self.album.artist
     end
+    
+    def user
+        self.artist.user
+    end
 end

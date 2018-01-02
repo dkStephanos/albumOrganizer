@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180101181401) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "bio"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,13 +35,6 @@ ActiveRecord::Schema.define(version: 20180101181401) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_favorite", default: false
-  end
-
-  create_table "user_artists", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "artist_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -16,7 +16,7 @@
 
 body {
     background: url(abstract-music-rock-bw.jpg);
-    background-size: 100% 1000px;
+    background-size: 100% 1050px;
     background-repeat: no-repeat;
     margin: auto;
     width: 50%;
@@ -30,7 +30,7 @@ body {
     font-family: "Arial Black", Serif;
 }
 
-.artistList, .albumList, .songList, .links {
+.artistList, .albumList, .songList {
     font-family: "Arial Black", Serif;
     overflow: auto;
 }
@@ -44,4 +44,15 @@ h1 {
 p {
     font-weight: bold;
     font-size: 125%;
+}
+
+.links {
+    font-family: "Arial Black", Serif;
+    float: right;
+    display: block;
+    padding: 15px;
+}
+
+.field {
+    font-family: "Arial Black", Serif;
 }

@@ -5,8 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
          
-  has_many :user_artists
-  has_many :artists, through: :user_artists
+  has_many :artists
   has_many :albums, through: :artists
   has_many :songs, through: :albums
          
