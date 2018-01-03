@@ -42,6 +42,7 @@ h1 {
     font-family: "Arial Black", Serif;
     text-shadow: 1px 1px indigo;
     text-decoration: underline;
+    padding-left: 20px;
 }
 
 p {
@@ -56,6 +57,7 @@ p {
     padding: 15px;
 }
 
-.field {
+.field, .actions {
     font-family: "Arial Black", Serif;
+    padding-left: 20px;
 }
