@@ -13,7 +13,17 @@ class AlbumsController < ApplicationController
     end
     
     def edit
-        set_album
+        if params[:artist_id]
+            artist = Artist.find_by(id: params[:artist_id])
+            if artist.nil?
+              redirect_to artists_path, alert: "Artist not found."
+            else
+              @album = artist.albums.find_by(id: params[:id])
+              redirect_to artist_albums_path(artist), alert: "Album not found." if @album.nil?
+            end
+        else
+           set_album
+        end
     end
     
     def create

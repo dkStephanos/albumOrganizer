@@ -11,7 +11,17 @@ class SongsController < ApplicationController
     end
     
     def edit
+      if params[:album_id]
+        album = Album.find_by(id: params[:album_id])
+        if album.nil?
+          redirect_to albums_path, alert: "Album not found."
+        else
+          @song = album.songs.find_by(id: params[:id])
+          redirect_to album_songs_path(album), alert: "Song not found." if @song.nil?
+        end
+      else
         set_song
+      end
     end
     
     def create
