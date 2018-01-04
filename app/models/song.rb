@@ -5,8 +5,6 @@ class Song < ApplicationRecord
     belongs_to :genre
     belongs_to :album
     
-    accepts_nested_attributes_for :genre
-    
     validates :name, presence: true
     validates :length, presence: true
     
