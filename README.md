@@ -4,7 +4,7 @@ A Ruby on Rails application that allows users to create accounts from which they
 
 ## Installation
 
-To use this app, just clone, run 'bundle install' and then run 'rake db:migrate' and 'rake db:seed.' You can start the servers using 'rails s.'
+To use this app, just clone, run 'bundle install' and then run 'rake db:migrate' and 'rake db:seed.' You can start the servers using 'rails s.' To enable Facebook login, you will have to add your own '.env' file with the appropriate key and secretvalue from Facebook's developer site.
 
 ## Usage
 
