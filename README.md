@@ -1,5 +1,5 @@
-# sinatraFantasyOrganizer
-A MVC application that allows users to log in and create, edit, update and destroy team objects representing a team of fantasy NBA players. All users may view teams, but editing and deleting privilages are reserved for the user that created the team.
+# albumOrganizer
+A Ruby on Rails application that allows users to create accounts from which they can create their own Artists/Albums/Songs/Genres. Users may also view all created data from other users, change or delete their own, or even mark songs they have contributed to their own favorite list.
 
 
 ## Installation
