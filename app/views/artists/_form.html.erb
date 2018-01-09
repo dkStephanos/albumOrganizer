@@ -19,6 +19,9 @@
   <%= f.text_area :bio %></div>
   
   <br></br>
+  
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
 
   <div class="actions"><%= f.submit 'Submit', :class => 'btn btn-primary' %></div>
 

@@ -1,0 +1,12 @@
+<div class="albumList">
+    <h2>Albums</h2>
+    <% if has_albums?(artist) %>
+        <p>No Albums currently added</p>
+    <% else %>
+        <ul>
+            <% artist.albums.each do |album| %>
+                <li><%= link_to album.name, artist_album_path(artist, album) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

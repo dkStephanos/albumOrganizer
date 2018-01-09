@@ -1,20 +1,12 @@
-<div class="artistList">
-    <h1>Artists</h1>
-    <% if @artists.empty? %>
-        <p>No Artists currently added</p>
-    <% else %>
-        <ul>
-            <% @artists.each do |artist| %>
-                <li><%= link_to artist.name, artist_path(artist) %></li>
-            <% end %>
-        </ul>
-    <% end %>
+<%= render partial: "artist_list", locals: {artists: @artists} %>
+
     
     <br></br>
     
-    <%= link_to "Add Artist", new_artist_path %>
-    
-</div>
+    <div class="options">
+        <%= link_to "Add Artist", new_artist_path %>
+    </div>
+
 
 <br></br>
 

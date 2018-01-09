@@ -1,0 +1,12 @@
+<div class="songList">
+    <h2>Favorite Songs</h2>
+    <% if current_user.favorite_songs.empty? %>
+        <p>No Favorited Songs</p>
+    <% else %>
+        <ul>
+            <% current_user.favorite_songs.each do |song| %>
+                <li><%= link_to ("#{song.name} [#{song.time}]"), song_path(song) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

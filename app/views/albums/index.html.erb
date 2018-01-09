@@ -1,20 +1,11 @@
-<div class="albumList">
-    <h1>Albums</h1>
-    <% if @albums.empty? %>
-        <p>No Albums currently added</p>
-    <% else %>
-        <ul>
-            <% @albums.each do |album| %>
-                <li><%= link_to album.name, album_path(album) %></li>
-            <% end %>
-        </ul>
-    <% end %>
-    
+<%= render partial: "album_list", locals: {albums: @albums} %>
+
     <br></br>
     
-    <%= link_to "Add Album", new_album_path %>
-    
-</div>
+    <div class="options">
+        <%= link_to "Add Album", new_album_path %>
+    </div>
+
 
 <br></br>
 

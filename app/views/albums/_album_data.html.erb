@@ -1,0 +1,13 @@
+<div class="albumData">
+    <h1><%= album.name %></h1>
+    <p>Released: <%= album.release_date %></p>
+    <% if has_genres?(album) %>
+        <p>Genres: 
+            <ul>
+                <% album.genres.each do |genre| %>
+                    <li><%= genre.name %></li>
+                <% end %>
+            </ul>
+        </p>
+    <% end %>
+</div>

@@ -1,0 +1,13 @@
+<div class="artistData">
+    <h1><%= artist.name %></h1>
+    <p><%= artist.bio %></p>
+    <% if has_genres?(artist) %>
+        <p>Genres: 
+            <ul>
+                <% artist.genres.each do |genre| %>
+                    <li><%= genre.name %></li>
+                <% end %>
+            </ul>
+        </p>
+    <% end %>
+</div>

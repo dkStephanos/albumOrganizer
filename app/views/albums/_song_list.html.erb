@@ -1,0 +1,12 @@
+<div class="songList">
+    <h2>Songs</h2>
+    <% if has_songs?(album) %>
+        <p>Album is empty</p>
+    <% else %>
+        <ul>
+            <% album.songs.each do |song| %>
+                <li><%= link_to ("#{song.name} [#{song.time}]"), album_song_path(album, song) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

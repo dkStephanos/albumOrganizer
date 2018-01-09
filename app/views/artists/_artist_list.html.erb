@@ -1,0 +1,12 @@
+<div class="artistList">
+    <h1>Artists</h1>
+    <% if artists.empty? %>
+        <p>No Artists currently added</p>
+    <% else %>
+        <ul>
+            <% artists.each do |artist| %>
+                <li><%= link_to artist.name, artist_path(artist) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

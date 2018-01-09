@@ -1,18 +1,4 @@
-<div class="songData">
-    <h1><%= @song.name %></h1>
-    <p>Artist: <%= @song.artist.name %></p>
-    <p>Album: <%= @song.album.name %></p>
-    <p>Genre: <%= @song.genre.name %></p>
-    
-    <% if user_song?(@song) %>
-        <p>Favorited: <%= favorited(@song) %></p>
-        
-        <br></br>
-        
-        <%= link_to "Edit Song", edit_song_path(@song) %>
-        <%= link_to "Delete Song", song_path(@song), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }%>
-    <% end %>
-</div>
+<%= render partial: "song_data", locals: {song: @song} %>
 
 <br></br>
 

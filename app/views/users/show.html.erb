@@ -2,33 +2,11 @@
     <h1>Welcome, <%= current_user.email %>!</h1>
 </div>
 
-<div class="artistList">
-    <h2>Your Artists</h2>
-    <% if current_user.artists.empty? %>
-        <p>No Artists currently added</p>
-    <% else %>
-        <ul>
-            <% current_user.artists.each do |artist| %>
-                <li><%= link_to artist.name, artist_path(artist) %></li>
-            <% end %>
-        </ul>
-    <% end %>
-</div>
+    <%= render 'user_artists' %>
 
 <br></br>
 
-<div class="songList">
-    <h2>Favorite Songs</h2>
-    <% if current_user.favorite_songs.empty? %>
-        <p>No Favorited Songs</p>
-    <% else %>
-        <ul>
-            <% current_user.favorite_songs.each do |song| %>
-                <li><%= link_to ("#{song.name} [#{song.time}]"), song_path(song) %></li>
-            <% end %>
-        </ul>
-    <% end %>
-</div>
+    <%= render 'favorite_songs' %>
 
 <br></br>
 
