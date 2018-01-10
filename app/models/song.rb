@@ -4,6 +4,8 @@ class Song < ApplicationRecord
     
     belongs_to :genre
     belongs_to :album
+    has_many :user_favorite_songs
+    has_many :users, through: :user_favorite_songs
     
     validates :name, presence: true
     validates :length, presence: true

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_favorite_songs
   resources :genres
   resources :songs
   resources :albums
@@ -9,6 +10,10 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   get '/welcome' => 'application#welcome'
+  
+  resources :songs do
+      put :favorite, on: :member
+  end
   
   resources :users, :only => [:show]
   

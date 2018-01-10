@@ -1,0 +1,2 @@
+module UserFavoriteSongsHelper
+end

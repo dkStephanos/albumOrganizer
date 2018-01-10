@@ -8,19 +8,13 @@ class User < ApplicationRecord
   has_many :artists
   has_many :albums, through: :artists
   has_many :songs, through: :albums
+  has_many :user_favorite_songs
+  has_many :favorite_songs, through: :user_favorite_songs, source: :song
          
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end      
-  end
-  
-  def favorite_songs
-    self.songs.select do |song|
-      if song.is_favorite
-        song
-      end
-    end
   end
 end

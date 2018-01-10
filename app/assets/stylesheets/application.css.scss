@@ -26,9 +26,9 @@ body {
     
 }
 
-.greeting, .options {
+.options {
     font-family: "Arial Black", Serif;
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 .artistList, .albumList, .songList, .songData, .albumData, .artistData {
@@ -58,7 +58,7 @@ p {
     padding: 15px;
 }
 
-.field, .actions {
+.field, .actions, .greeting {
     font-family: "Arial Black", Serif;
     padding-left: 20px;
 }

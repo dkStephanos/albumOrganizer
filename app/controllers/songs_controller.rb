@@ -53,6 +53,24 @@ class SongsController < ApplicationController
         end
     end
     
+    def favorite
+      set_song
+      type = params[:type]
+      
+      if type == "favorite"
+        current_user.favorite_songs << @song
+        redirect_to @song, notice: 'You favorited #{@song.name}'
+  
+      elsif type == "unfavorite"
+        current_user.favorite_songs.delete(@song)
+        redirect_to @song, notice: 'Unfavorited #{@song.name}'
+  
+      else
+        # Type missing, nothing happens
+        redirect_to :back, notice: 'Nothing happened.'
+      end
+    end
+    
     private
     
     def set_song
@@ -60,6 +78,6 @@ class SongsController < ApplicationController
     end
     
     def song_params
-        params.require(:song).permit(:name, :length, :is_favorite, :album_id, :genre_name)
+        params.require(:song).permit(:name, :length, :album_id, :genre_name)
     end
 end
