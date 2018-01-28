@@ -1,0 +1,12 @@
+<div class="genreList">
+    <h1>Genres</h1>
+    <% if genres.empty? %>
+        <p>No Genres currently added</p>
+    <% else %>
+        <ul>
+            <% genres.each do |genre| %>
+                <li><%= link_to genre.name, genre_path(genre) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

@@ -1,0 +1,9 @@
+<%= render partial: "genre_data", locals: {genre: @genre} %>
+
+<%= render partial: "albums/_list", locals: {albums: @genre.songs} %>
+
+<br></br>
+
+<div class="links">
+    <%= link_to "Back to User", user_path(current_user) %>
+</div>

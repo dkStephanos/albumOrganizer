@@ -1,15 +1,8 @@
 <%= render partial: "song_data", locals: {song: @song} %>
 
 <br></br>
-<div class="options">
-    <% if current_user %>
-        <% if @song.users.include?(current_user)%>
-            <%= link_to "Unfavorite", favorite_song_path(@song, type: "unfavorite"), method: :put %>
-        <% else %>
-            <%= link_to "Favorite",   favorite_song_path(@song, type: "favorite"), method: :put %>
-        <% end %>
-    <% end %>
-</div>
+
+<%= render partial: "select_favorite", locals: {song: @song} %>
 
 <br></br>
 

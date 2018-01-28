@@ -26,12 +26,7 @@ body {
     
 }
 
-.options {
-    font-family: "Arial Black", Serif;
-    padding-left: 40px;
-}
-
-.artistList, .albumList, .songList, .songData, .albumData, .artistData {
+.artistList, .albumList, .songList, .genreList, .songData, .albumData, .artistData, .genreData {
     font-family: "Arial Black", Serif;
     overflow: auto;
     padding-left: 20px;
@@ -58,7 +53,7 @@ p {
     padding: 15px;
 }
 
-.field, .actions, .greeting {
+.field, .actions, .greeting, .options {
     font-family: "Arial Black", Serif;
     padding-left: 20px;
 }
