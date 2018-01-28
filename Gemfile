@@ -6,6 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 # Additional gems for application
+gem 'jplayer-rails'
+gem 'paperclip'
+gem 'active_model_serializers'
 gem 'pry'
 
 gem 'devise'

@@ -4,6 +4,10 @@ class SongsController < ApplicationController
     
     def show
         @song = Song.find(params[:id])
+        respond_to do |format|
+            format.html { render :show }
+            format.json { render json: @song }
+        end
     end
     
     def new
@@ -28,7 +32,8 @@ class SongsController < ApplicationController
         @song = Song.new(song_params)
         respond_to do |format|
           if @song.save
-            format.html { redirect_to @song, notice: 'Song was successfully created.' }
+            flash[:notice] = 'Song was successfully created.'
+            format.html { redirect_to @song }
           else
             format.html { render :new }
           end
@@ -39,7 +44,8 @@ class SongsController < ApplicationController
         set_song
         respond_to do |format|
           if @song.update(song_params)
-            format.html { redirect_to @song, notice: 'Song was successfully updated.' }
+            flash[:notice] = 'Song was successfully updated.'
+            format.html { redirect_to @song }
           else
             format.html { render :edit }
           end
@@ -49,7 +55,8 @@ class SongsController < ApplicationController
     def destroy
         @song.destroy
         respond_to do |format|
-          format.html { redirect_to songs_url, notice: 'Song was successfully destroyed.' }
+          flash[:notice] = 'Song was successfully destroyed.'
+          format.html { redirect_to songs_url }
         end
     end
     
@@ -59,15 +66,18 @@ class SongsController < ApplicationController
       
       if type == "favorite"
         current_user.favorite_songs << @song
-        redirect_to @song, notice: 'You favorited #{@song.name}'
+        flash[:notice] = 'You favorited #{@song.name}'
+        redirect_to @song
   
       elsif type == "unfavorite"
         current_user.favorite_songs.delete(@song)
-        redirect_to @song, notice: 'Unfavorited #{@song.name}'
+        flash[:notice] = 'Unfavorited #{@song.name}'
+        redirect_to @song
   
       else
         # Type missing, nothing happens
-        redirect_to :back, notice: 'Nothing happened.'
+        flash[:notice] = 'Nothing happened.'
+        redirect_to :back
       end
     end
     

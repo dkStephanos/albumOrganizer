@@ -4,10 +4,18 @@ class ArtistsController < ApplicationController
     
     def show
         set_artist
+        respond_to do |format|
+            format.html { render :show }
+            format.json { render json: @artist }
+        end
     end
     
     def index
         @artists = Artist.all
+        respond_to do |format|
+            format.html { render :index }
+            format.json { render json: @artists }
+        end
     end
     
     def new
@@ -24,7 +32,8 @@ class ArtistsController < ApplicationController
         @artist.user = current_user
         respond_to do |format|
           if @artist.save
-            format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
+            flash[:notice] = 'Artist was successfully created.'
+            format.html { redirect_to @artist }
           else
             format.html { render :new }
           end
@@ -35,7 +44,8 @@ class ArtistsController < ApplicationController
         set_artist
         respond_to do |format|
           if @artist.update(artist_params)
-            format.html { redirect_to @artist, notice: 'Artist was successfully updated.' }
+            flash[:notice] = 'Artist was successfully updated.'
+            format.html { redirect_to @artist }
           else
             format.html { render :edit }
           end
@@ -46,7 +56,8 @@ class ArtistsController < ApplicationController
         set_artist
         @artist.destroy
         respond_to do |format|
-          format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
+            flash[:notice] = 'Artist was successfully destroyed.'
+            format.html { redirect_to artists_url }
         end
     end
     

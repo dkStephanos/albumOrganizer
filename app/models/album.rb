@@ -6,6 +6,9 @@ class Album < ApplicationRecord
     
     validates :name, presence: true
     validates :release_date, presence: true
+
+    has_attached_file :album_cover
+    validates_attachment_content_type :album_cover, content_type: /\Aimage\/.*\z/
     
     def user
         self.artist.user
