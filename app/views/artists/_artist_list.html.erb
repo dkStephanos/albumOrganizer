@@ -5,7 +5,10 @@
     <% else %>
         <ul>
             <% artists.each do |artist| %>
-                <li><%= link_to artist.name, artist_path(artist) %></li>
+                <li>
+                    <%= image_tag artist.avatar.url(:thumb) %>
+                    <%= link_to artist.name, artist_path(artist) %>
+                </li>
             <% end %>
         </ul>
     <% end %>

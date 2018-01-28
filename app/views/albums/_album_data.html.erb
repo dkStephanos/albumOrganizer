@@ -1,4 +1,5 @@
 <div class="albumData">
+    <%= image_tag album.album_cover.url(:icon) %>
     <h1><%= album.name %></h1>
     <p>Released: <%= album.release_date %></p>
     <% if has_genres?(album) %>

@@ -5,7 +5,10 @@
     <% else %>
         <ul>
             <% albums.each do |album| %>
-                <li><%= link_to album.name, album_path(album) %></li>
+                <li>
+                    <%= image_tag album.album_cover.url(:thumb) %>
+                    <%= link_to album.name, album_path(album) %>      
+                </li>
             <% end %>
         </ul>
     <% end %>

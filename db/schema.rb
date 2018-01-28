@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110161759) do
+ActiveRecord::Schema.define(version: 20180128183514) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,10 @@ ActiveRecord::Schema.define(version: 20180110161759) do
     t.integer "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "album_cover_file_name"
+    t.string "album_cover_content_type"
+    t.integer "album_cover_file_size"
+    t.datetime "album_cover_updated_at"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -26,6 +30,10 @@ ActiveRecord::Schema.define(version: 20180110161759) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "genres", force: :cascade do |t|
