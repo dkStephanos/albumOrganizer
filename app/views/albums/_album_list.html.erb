@@ -6,7 +6,7 @@
         <ul>
             <% albums.each do |album| %>
                 <li>
-                    <%= image_tag album.album_cover.url(:thumb) %>
+                    <%= image_tag album.album_cover.url(:thumb) %> <br>
                     <%= link_to album.name, album_path(album) %>      
                 </li>
             <% end %>

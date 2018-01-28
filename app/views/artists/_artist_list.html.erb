@@ -6,7 +6,7 @@
         <ul>
             <% artists.each do |artist| %>
                 <li>
-                    <%= image_tag artist.avatar.url(:thumb) %>
+                    <%= image_tag artist.avatar.url(:thumb) %> <br>
                     <%= link_to artist.name, artist_path(artist) %>
                 </li>
             <% end %>

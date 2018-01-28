@@ -1,4 +1,7 @@
 <div class="songData">
+    <div class="albumCover">
+        <%= image_tag song.album.album_cover.url(:icon) %>
+    </div>
     <h1><%= song.name %></h1>
     <p>Artist: <%= song.artist.name %></p>
     <p>Album: <%= song.album.name %></p>

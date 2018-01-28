@@ -23,6 +23,7 @@ body {
     border: 3px solid black;
     padding: 10px;
     display: block;
+    overflow: auto;
     
 }
 
@@ -61,4 +62,10 @@ p {
 .field, .actions, .greeting {
     font-family: "Arial Black", Serif;
     padding-left: 20px;
+}
+
+.artistAvatar, .albumCover {
+    float: right;
+    padding-top: 40px;
+    padding-right: 40px;
 }

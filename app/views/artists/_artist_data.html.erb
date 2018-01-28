@@ -1,5 +1,7 @@
 <div class="artistData">
-    <%= image_tag artist.avatar.url(:icon) %>
+    <div class="artistAvatar">
+        <%= image_tag artist.avatar.url(:icon) %>
+    </div>
     <h1><%= artist.name %></h1>
     <p><%= artist.bio %></p>
     <% if has_genres?(artist) %>
