@@ -2,10 +2,13 @@
     <div class="albumCover">
         <%= image_tag song.album.album_cover.url(:icon) %>
     </div>
-    <h1><%= song.name %></h1>
-    <p>Artist: <%= song.artist.name %></p>
-    <p>Album: <%= song.album.name %></p>
-    <p>Genre: <%= song.genre.name %></p>
+    <h1 id="songTitle"><%= song.name %></h1>
+    <label>Artist: </label>
+    <p id="songArtist"><%= song.artist.name %></p>
+    <label>Album: </label>
+    <p id="songAlbum"><%= song.album.name %></p>
+    <label>Genre: </label>
+    <p id="songGenre"><%= song.genre.name %></p>
     
     <% if user_song?(song) %>
         <div class="options">
