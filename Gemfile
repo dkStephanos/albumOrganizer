@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+
 # Additional gems for application
 gem 'jplayer-rails'
 gem 'paperclip'

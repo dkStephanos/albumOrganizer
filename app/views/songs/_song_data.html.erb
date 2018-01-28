@@ -1,6 +1,6 @@
 <div class="songData">
     <div class="albumCover">
-        <%= image_tag song.album.album_cover.url(:icon) %>
+        <img id="songAlbumCover" src="<%=song.album.album_cover.url(:icon)%>">
     </div>
     <h1 id="songTitle"><%= song.name %></h1>
     <label>Artist: </label>
@@ -12,8 +12,30 @@
     
     <% if user_song?(song) %>
         <div class="options">
+
+            <a href="#" class="js-next" data-id="<%=@song.id%>">Next Song</a>
+
             <%= link_to "Edit Song", edit_song_path(song) %>
             <%= link_to "Delete Song", song_path(song), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }%>
         </div>
     <% end %>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function(event) {
+    debugger;
+    event.preventDefault();
+    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/songs/" + nextId + ".json", function(data) {
+      let song = data;
+      $("#songTitle")[0].innerHTML = song["name"];
+      $("#songArtist")[0].innerHTML = song["artist"]["name"];
+      $("#songAlbum")[0].innerHTML = song["album"]["name"];
+      $("#songAlbumCover").attr("src", song["album"]["albumCover"]);
+      $("#songGenre")[0].innerHTML = song["genre"]["name"];
+      $(".js-next").attr("data-id", song["id"]);
+    });
+  });
+});
+</script>
