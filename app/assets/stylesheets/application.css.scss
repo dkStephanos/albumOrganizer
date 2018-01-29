@@ -52,6 +52,13 @@ p {
     padding-left: 20px;
 }
 
+label {
+    font-size: 125%;
+    text-shadow: 1px 1px indigo;
+    text-decoration: underline;
+    padding-left: 20px;
+}
+
 .links {
     font-family: "Arial Black", Serif;
     float: right;
@@ -69,4 +76,8 @@ p {
     clear: both;
     padding-top: 40px;
     padding-right: 60px;
+}
+
+img {
+    border: #000000 2px solid;
 }
