@@ -10,15 +10,24 @@
     <label>Genre: </label>
     <p id="songGenre"><%= song.genre.name %></p>
     
-    <% if user_song?(song) %>
-        <div class="options">
+    <div class="options">
 
-            <a href="#" class="js-next" data-id="<%=@song.id%>">Next Song</a>
+        <% #binding.pry %>
 
-            <%= link_to "Edit Song", edit_song_path(song) %>
-            <%= link_to "Delete Song", song_path(song), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }%>
-        </div>
-    <% end %>
+        <% if !Song.is_last?(song.id) %>
+
+            <a href="#" class="js-next" data-id="<%=song.id%>">Next Song</a>
+
+        <%  end %>
+
+        <% if user_song?(song) %>
+
+            <a id="editSong" href="/songs/24/edit">Edit Song</a>
+
+            <a id="deleteSong" data-confirm="Are you certain you want to delete this?" rel="nofollow" data-method="delete" href="/songs/24">Delete Song</a>
+
+        <% end %>
+    </div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -39,7 +48,12 @@ $(function () {
       let icon_url = image_url.replace("original", "icon");
       $("#songAlbumCover").attr("src", icon_url);
       $("#songGenre")[0].innerHTML = song["genre"]["name"];
-      $(".js-next").attr("data-id", song["id"]);
+      //Updates options links with id of new song, removes 'Next Song' if there are no more songs.
+        $.get("/songs/" + (nextId + 1) + ".json", function(data) {
+            $(".js-next").attr("data-id", song["id"]);     
+        }).fail(function() {
+            $(".js-next").remove();
+        });   
     });
   });
 });
