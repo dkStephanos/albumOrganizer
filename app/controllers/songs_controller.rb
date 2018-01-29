@@ -11,19 +11,19 @@ class SongsController < ApplicationController
     end
     
     def new
-        @song = Song.new
+      @album = Album.find_by(id: params[:album_id])
+      @song = @album.songs.build
     end
     
     def edit
       #Checks to confirm there is an album id in params
       if params[:album_id]
-        album = Album.find_by(id: params[:album_id])
-        if album.nil?
-          binding.pry
-          redirect_to albums_path(album), alert: "Album not found."
+        @album = Album.find_by(id: params[:album_id])
+        if @album.nil?
+          redirect_to albums_path(@album), alert: "Album not found."
         else
-          @song = album.songs.find_by(id: params[:id])
-          redirect_to album_path(album), alert: "Song not found." if @song.nil?
+          @song = @album.songs.find_by(id: params[:id])
+          redirect_to album_path(@album), alert: "Song not found." if @song.nil?
         end
         #If we make it this far, the song and album data are valid, so set the song and render the edit page
         set_song
