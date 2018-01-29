@@ -15,15 +15,17 @@ class SongsController < ApplicationController
     end
     
     def edit
+      #Checks to confirm there is an album id in params
       if params[:album_id]
         album = Album.find_by(id: params[:album_id])
         if album.nil?
-          redirect_to albums_path, alert: "Album not found."
+          binding.pry
+          redirect_to albums_path(album), alert: "Album not found."
         else
           @song = album.songs.find_by(id: params[:id])
-          redirect_to album_songs_path(album), alert: "Song not found." if @song.nil?
+          redirect_to album_path(album), alert: "Song not found." if @song.nil?
         end
-      else
+        #If we make it this far, the song and album data are valid, so set the song and render the edit page
         set_song
       end
     end
@@ -33,7 +35,7 @@ class SongsController < ApplicationController
         respond_to do |format|
           if @song.save
             flash[:notice] = 'Song was successfully created.'
-            format.html { redirect_to @song }
+            format.html { redirect_to album_song_path(@song) }
           else
             format.html { render :new }
           end
@@ -66,17 +68,17 @@ class SongsController < ApplicationController
       
       if type == "favorite"
         current_user.favorite_songs << @song
-        flash[:notice] = 'You favorited #{@song.name}'
-        redirect_to @song
+        flash[:notice] = "You favorited #{@song.name}"
+        redirect_to album_song_path(@song)
   
       elsif type == "unfavorite"
         current_user.favorite_songs.delete(@song)
-        flash[:notice] = 'Unfavorited #{@song.name}'
-        redirect_to @song
+        flash[:notice] = "Unfavorited #{@song.name}"
+        redirect_to album_song_path(@song)
   
       else
         # Type missing, nothing happens
-        flash[:notice] = 'Nothing happened.'
+        flash[:notice] = "Nothing happened."
         redirect_to :back
       end
     end

@@ -105,6 +105,9 @@ function updateAlbumCover(song) {
 
 function updateOptions(song) {
     //Updates options links with id of new song
-    $("#editSong").attr("href", ("/songs/" + song["id"] + "/edit"));
-    $("#deleteSong").attr("href", ("/songs/" + song["id"]));
+    //debugger;
+    let editUrl = "/albums/" + albumId + "/songs/" + song["id"] + "/edit";
+    let deleteUrl = "/albums/" + albumId + "/songs/" + song["id"];
+    $("#editSong").attr("href", editUrl);
+    $("#deleteSong").attr("href", deleteUrl);
 }
