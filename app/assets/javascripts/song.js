@@ -2,6 +2,8 @@ $(document).ready(function () {
     attachListeners();
 });
 
+let albumId = 0;
+
 function attachListeners() {
     //Attaches listener for 'Next Song' link
     $(".js-next").on("click", function(event) {
@@ -18,19 +20,27 @@ function attachListeners() {
 }
 
 function nextSong() {
+    getAlbumId();
     let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    const url = "/albums/" + albumId + "/songs/" + nextId + ".json";
     //Obtain song data with jQuery call to JSON object, parsing response back into HTML fields
-    $.get("/songs/" + nextId + ".json", function(song) {
+    $.get(url, function(song) {
         updateSongData(song, nextId, "next");
     });
 }
 
 function lastSong() {
+    getAlbumId();
     let lastId = parseInt($(".js-last").attr("data-id")) - 1;
+    const url = "/albums/" + albumId + "/songs/" + lastId + ".json";
     //Obtain song data with jQuery call to JSON object, parsing response back into HTML fields
-    $.get("/songs/" + lastId + ".json", function(song) {
+    $.get(url, function(song) {
         updateSongData(song, lastId, "last");
     });
+}
+
+function getAlbumId() {
+    albumId = parseInt($(".js-next").attr("album-id"));
 }
 
 function updateSongData(song, newId, type) {
@@ -50,26 +60,32 @@ function updateSongData(song, newId, type) {
 
 function updateNextSongLink(song, newId) {
     //Checks to see if there is a following song in the database, if so, updates the 'Next Song' link appropriately, if not, removes it. 
-    $.get("/songs/" + (newId + 1) + ".json", function() {
-        $(".js-next").attr("data-id", song["id"]);     
+    const url = "/albums/" + albumId + "/songs/" + (newId + 1) + ".json";
+    $.get(url, function() {
+        $(".js-next").attr("data-id", song["id"]);
+        $(".js-next").attr("album-id", song["album"]["id"]);       
     }).fail(function() {
         $(".js-next").hide();
     });
     //Regardless, update the 'Last Song' link and make sure it is visible
     $(".js-last").show();
     $(".js-last").attr("data-id", song["id"]); 
+    $(".js-last").attr("album-id", song["album"]["id"]);  
 }
 
 function updateLastSongLink(song, newId) {
     //Checks to see if there is a preceeding song in the database, if so, updates the 'Last Song' link appropriately, if not, removes it. 
-    $.get("/songs/" + (newId - 1) + ".json", function() {
-        $(".js-last").attr("data-id", song["id"]);     
+    const url = "/albums/" + albumId + "/songs/" + (newId - 1) + ".json";
+    $.get(url, function() {
+        $(".js-last").attr("data-id", song["id"]);
+        $(".js-last").attr("album-id", song["album"]["id"]);      
     }).fail(function() {
         $(".js-last").hide();
     });
     //Regardless, update the 'Next Song' link and make sure it is visible 
     $(".js-next").show();
-    $(".js-next").attr("data-id", song["id"]); 
+    $(".js-next").attr("data-id", song["id"]);
+    $(".js-next").attr("album-id", song["album"]["id"]);   
 }
 
 function updateFields(song) {
