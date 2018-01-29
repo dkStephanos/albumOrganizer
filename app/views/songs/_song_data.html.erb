@@ -12,6 +12,12 @@
     
     <div class="options">
 
+        <% if !Song.is_first?(song.id) %>
+
+            <a href="#" class="js-last" data-id="<%=song.id%>">Last Song</a>
+
+        <%  end %>
+
         <% if !Song.is_last?(song.id) %>
 
             <a href="#" class="js-next" data-id="<%=song.id%>">Next Song</a>

@@ -40,4 +40,8 @@ class Song < ApplicationRecord
     def self.is_last?(id)
         Song.find_by(id: (id + 1)) ? false : true
     end
+
+    def self.is_first?(id)
+        Song.find_by(id: (id - 1)) ? false : true
+    end
 end
