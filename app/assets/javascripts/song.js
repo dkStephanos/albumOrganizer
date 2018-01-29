@@ -1,10 +1,17 @@
 $(document).ready(function () {
-  $(".js-next").on("click", function(event) {
-    // On click, prevent default and pull in song id from form field
-    event.preventDefault();
-    nextSong();
-  });
+    attachListeners();
 });
+
+function attachListeners() {
+    //Attaches listener for 'Next Song' link
+    $(".js-next").on("click", function(event) {
+        // On click, prevent default and pull in song id from form field
+        event.preventDefault();
+        nextSong();
+    });
+    //Attaches listener for 'Previous Song' link
+
+}
 
 function nextSong() {
     let nextId = parseInt($(".js-next").attr("data-id")) + 1;
@@ -26,9 +33,9 @@ function updateSongData(song, nextId) {
 
 }
 
-function updateNextSongLink(data, nextId) {
+function updateNextSongLink(song, nextId) {
     //Checks to see if there is a following song in the database, if so, updates the 'Next Song' link appropriately, if not, removes it. 
-    $.get("/songs/" + (nextId + 1) + ".json", function(data) {
+    $.get("/songs/" + (nextId + 1) + ".json", function(song) {
         $(".js-next").attr("data-id", song["id"]);     
     }).fail(function() {
         $(".js-next").remove();
