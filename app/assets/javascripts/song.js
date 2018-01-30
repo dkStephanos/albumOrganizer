@@ -1,6 +1,8 @@
-$(document).ready(function () {
-    attachListeners();
-    showNavigationLinks();
+$(document).on("ready turbolinks:load", function() {
+    if($(".songs.show").length !== 0) {
+        attachListeners();
+        showNavigationLinks();
+    }
 });
 
 let albumId = 0;
