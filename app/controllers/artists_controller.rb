@@ -11,7 +11,7 @@ class ArtistsController < ApplicationController
     end
     
     def index
-        @artists = Artist.all
+        @artists = Artist.order(:name)
         respond_to do |format|
             format.html { render :index }
             format.json { render json: @artists }

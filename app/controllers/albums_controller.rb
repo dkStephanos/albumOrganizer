@@ -9,7 +9,7 @@ class AlbumsController < ApplicationController
     end
     
     def index
-        @albums = Album.all
+        @albums = Album.order(:name)
         respond_to do |format|
             format.html { render :index }
             format.json { render json: @albums }

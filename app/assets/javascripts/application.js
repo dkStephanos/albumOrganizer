@@ -16,4 +16,3 @@
 //= require_tree .
 //= require jquery
 //= require song.js
-//= require jquery-readyselector
