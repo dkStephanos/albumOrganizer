@@ -1,3 +1,17 @@
 // Place all the styles related to the Artists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.artistList, .artistData {
+    font-family: "Arial Black", Serif;
+    overflow: auto;
+    padding-left: 20px;
+    
+}
+
+.artistAvatar {
+    float: right;
+    clear: both;
+    padding-top: 40px;
+    padding-right: 60px;
+}

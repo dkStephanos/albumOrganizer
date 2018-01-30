@@ -11,19 +11,12 @@
     <label>Genre: </label>
     <p id="songGenre"><%= song.genre.name %></p>
     
-    <div class="options">
-
-        <% if !Song.is_first?(song.id) %>
-
-            <a href="#" class="js-last" album-id="<%=song.album.id%>" data-id="<%=song.id%>">Last Song</a>
-
-        <%  end %>
-
-        <% if !Song.is_last?(song.id) %>
-
-            <a href="#" class="js-next" album-id="<%=song.album.id%>" data-id="<%=song.id%>">Next Song</a>
-
-        <%  end %>
-    </div>
 </div>
 
+<div class="navigation">
+
+    <a href="#" class="js-last" album-id="<%=song.album.id%>" data-id="<%=song.id%>">Last Song</a>
+
+    <a href="#" class="js-next" album-id="<%=song.album.id%>" data-id="<%=song.id%>">Next Song</a>
+
+</div>

@@ -32,13 +32,6 @@ body {
     padding-left: 40px;
 }
 
-.artistList, .albumList, .songList, .songData, .albumData, .artistData {
-    font-family: "Arial Black", Serif;
-    overflow: auto;
-    padding-left: 20px;
-    
-}
-
 h1, h2 {
     font-family: "Arial Black", Serif;
     text-shadow: 1px 1px indigo;
@@ -59,6 +52,13 @@ label {
     padding-left: 20px;
 }
 
+.navigation {
+    font-family: "Arial Black", Serif;
+    float: right;
+    display: block;
+    padding-right: 90px;
+}
+
 .links {
     font-family: "Arial Black", Serif;
     float: right;
@@ -71,13 +71,7 @@ label {
     padding-left: 20px;
 }
 
-.artistAvatar, .albumCover {
-    float: right;
-    clear: both;
-    padding-top: 40px;
-    padding-right: 60px;
-}
-
 img {
+    padding: 2px;
     border: #000000 2px solid;
 }
