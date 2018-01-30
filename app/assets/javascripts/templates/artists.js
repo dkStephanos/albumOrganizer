@@ -1,4 +1,6 @@
-$(document).ready(getArtists());
+$(document).on("ready turbolinks:load", function() {
+	if($(".artists.index").length !== 0) getArtists();
+});
 
 function loadArtists(artists) {
   var template = Handlebars.compile(document.getElementById("artistLi-template").innerHTML);

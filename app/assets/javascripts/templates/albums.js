@@ -1,4 +1,6 @@
-$(document).ready(getAlbums());
+$(document).on("ready turbolinks:load", function() {
+	if($(".albums.index").length !== 0) getAlbums();
+});
 
 function loadAlbums(albums) {
   var template = Handlebars.compile(document.getElementById("albumLi-template").innerHTML);
