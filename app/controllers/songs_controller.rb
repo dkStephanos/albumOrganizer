@@ -82,6 +82,10 @@ class SongsController < ApplicationController
         redirect_to :back
       end
     end
+
+    def last
+      render json: Song.last
+    end
     
     private
     

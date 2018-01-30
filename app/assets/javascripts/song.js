@@ -1,5 +1,6 @@
 $(document).ready(function () {
     attachListeners();
+    showNavigationLinks();
 });
 
 let albumId = 0;
@@ -110,4 +111,22 @@ function updateOptions(song) {
     let deleteUrl = "/albums/" + albumId + "/songs/" + song["id"];
     $("#editSong").attr("href", editUrl);
     $("#deleteSong").attr("href", deleteUrl);
+}
+
+
+function showNavigationLinks() {
+    let currentId = parseInt($(".js-next").attr("data-id"));
+    //If song is the first song, hide the previous link, if its the last song, hide the next link
+    $.get("/songs/last", function(song) {
+        let lastSongId = song["id"];
+        if(currentId === 1) {
+            $(".js-last").hide();
+            $(".js-next").show();
+        } 
+        if(currentId === lastSongId) {
+            $(".js-last").show();
+            $(".js-next").hide();
+        }
+    })
+
 }
