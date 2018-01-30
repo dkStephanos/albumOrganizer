@@ -12,6 +12,8 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require handlebars
+//= require_tree ./templates
 //= require_tree .
 //= require jquery
 //= require song.js

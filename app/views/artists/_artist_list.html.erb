@@ -2,14 +2,19 @@
     <h1>Artists</h1>
     <% if artists.empty? %>
         <p>No Artists currently added</p>
-    <% else %>
-        <ul>
-            <% artists.each do |artist| %>
-                <li>
-                    <%= image_tag artist.avatar.url(:thumb) %> <br>
-                    <%= link_to artist.name, artist_path(artist) %>
-                </li>
-            <% end %>
-        </ul>
     <% end %>
+    <div id="artistList"></div>
+
 </div>
+
+<script id="artistLi-template" type="text/x-handlebars-template">
+    <ul>
+    {{#each this}}
+        <li>
+            <img src="{{avatar}}" alt="{{name}}">
+            <br>
+            <a href="/artists/{{id}}">{{name}}</a>
+        </li>
+    {{/each}}
+    </ul>
+</script>

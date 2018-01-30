@@ -13,7 +13,7 @@ gem 'jplayer-rails'
 gem 'paperclip'
 gem 'active_model_serializers'
 gem 'pry'
-
+gem 'handlebars_assets'
 gem 'devise'
 gem 'devise_invitable'
 gem 'omniauth'
