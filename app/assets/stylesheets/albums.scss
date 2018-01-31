@@ -2,16 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.albumList, .albumData {
+.albumData {
     font-family: "Arial Black", Serif;
     overflow: auto;
     padding-left: 20px;
     
 }
 
+.albumList {
+	font-family: "Arial Black", Serif;
+	float: left;
+    padding-left: 20px;
+    width: 250px;
+    overflow: auto;
+}
+
+.albumForm {
+	float: right;
+	overflow: auto;
+	transform: scale(0.9);
+	padding-right: 20px;
+}
+
+
 .albumCover {
     float: right;
     clear: both;
     padding-top: 40px;
     padding-right: 60px;
+}
+
+.albumIndex {
+	overflow: auto;
 }

@@ -1,17 +1,57 @@
 <%= javascript_include_tag "templates/albums" %>
 
-<%= render partial: "album_list", locals: {albums: @albums} %>
+<div class="albumIndex">
 
-    <br></br>
-    
-    <div class="options">
-        <%= link_to "Add Album", new_album_path %>
-    </div>
 
+	<%= render partial: "album_list", locals: {albums: @albums} %>
+
+	<div class="albumForm" style="display: none;">
+
+	    <h1>Create a new album</h1>
+
+		<form class="new_album" id="new_album" enctype="multipart/form-data" action="/albums" accept-charset="UTF-8" method="post" authenticity_token: true>
+
+	    
+	    
+		    <div class="field"> <label for="album_name">Name:</label><br>
+		    <input type="text" name="album[name]" id="album_name"></div><br>
+		    
+		    <div class="field"><label for="album_release_date">Released:</label><br>
+		    <input type="text" name="album[release_date]" id="album_release_date"></div><br>
+		    
+		    
+		    <div class="field"><label for="album_artist_id">Artist:</label><br>
+		    <select name="album[artist_id]" id="album_artist_id"><option value="1">The Beatles</option></select></div><br>
+
+		    <div class="feild">
+		      <label for="album_album_cover">Album Cover:</label>
+		      <input type="file" name="album[album_cover]" id="album_album_cover">
+		    </div>
+		    
+		    <input type=hidden name="authenticity_token" value="<%= form_authenticity_token %>">
+		    
+		    <br><br>
+
+		    <div class="actions"><input type="submit" name="commit" value="Submit" class="btn btn-primary" data-disable-with="Submit" id="albumSubmit"></div>
+
+		</form>
+
+	<br><br>
+
+	<div class="actions"><a href="/albums">Cancel</a></div>
+	  
+	</div>
+
+</div>
+
+	<div class="options">
+	        <%= link_to "Add Album", new_album_path, id: "addAlbum" %>
+	        	
+	</div>
 
 <br></br>
 
 <div class="links">
-    <%= link_to "Back to User", user_path(current_user) %>
-    <%= link_to "All Artists", artists_path %>
+	    <%= link_to "Back to User", user_path(current_user) %>
+	    <%= link_to "All Artists", artists_path %>
 </div>

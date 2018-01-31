@@ -2,7 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.artistList, .artistData {
+.artistList {
+    font-family: "Arial Black", Serif;
+    overflow: auto;
+    padding-left: 20px;
+    display: block;
+    
+}
+
+.artistData {
     font-family: "Arial Black", Serif;
     overflow: auto;
     padding-left: 20px;
@@ -14,4 +22,11 @@
     clear: both;
     padding-top: 40px;
     padding-right: 60px;
+}
+
+.artistAlbumList {
+	font-family: "Arial Black", Serif;
+    padding-left: 20px;
+    width: 250px;
+    overflow: auto;
 }

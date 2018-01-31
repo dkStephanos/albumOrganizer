@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
         respond_to do |format|
           if @album.save
             flash[:notice] = 'Album was successfully created.'
-            format.html { redirect_to @album }
+            format.json { render json: { status: :true } }
           else
             format.html { render :new }
           end
@@ -59,6 +59,7 @@ class AlbumsController < ApplicationController
     end
     
     def destroy
+        set_album
         @album.destroy
         respond_to do |format|
             flash[:notice] = 'Album was successfully destroyed.'
