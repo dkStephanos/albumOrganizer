@@ -35,6 +35,7 @@ class ArtistsController < ApplicationController
           if @artist.save
             flash[:notice] = 'Artist was successfully created.'
             format.json { render json: { status: :true } }
+            format.html { render :show }
           else
             format.html { render :new }
           end

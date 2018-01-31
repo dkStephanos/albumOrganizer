@@ -9,6 +9,7 @@ class AlbumsController < ApplicationController
     end
     
     def index
+        @album = Album.new
         @albums = Album.order(:name)
         respond_to do |format|
             format.html { render :index }
