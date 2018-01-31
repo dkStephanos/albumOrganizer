@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   get '/welcome' => 'application#welcome'
   get '/songs/last' => 'songs#last'
+  get '/users/current' => 'users#current'
   
   resources :users, :only => [:show]
   

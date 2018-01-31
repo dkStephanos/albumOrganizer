@@ -1,7 +1,7 @@
-$(document).ready(() => showNavigationLinks())
 $(document).on("ready turbolinks:load", function() {
     if($(".songs.show").length !== 0) {
         attachListeners();
+        showLinks();
     }
 });
 
@@ -53,6 +53,8 @@ function updateSongData(song, newId, type) {
     updateAlbumCover(song);
     //Updates options links with id of new song
     updateOptions(song);
+    //Updates the favorite links
+    showFavoriteLinks(song.id);
     //Updates or Removes the 'Next Song/Last Song' link depending on whether or not another song exists in the collection
     if(type === "next") {
         updateNextSongLink(song, newId)  
@@ -111,13 +113,20 @@ function updateOptions(song) {
     //debugger;
     let editUrl = "/albums/" + albumId + "/songs/" + song["id"] + "/edit";
     let deleteUrl = "/albums/" + albumId + "/songs/" + song["id"];
+    let favoriteUrl = "/albums/" + albumId + "/songs/" + song["id"] + "/favorite?type=favorite";
+    let unfavoriteUrl = "/albums/" + albumId + "/songs/" + song["id"] + "/favorite?type=unfavorite";
     $("#editSong").attr("href", editUrl);
     $("#deleteSong").attr("href", deleteUrl);
+    $("#favoriteSong").attr("href", favoriteUrl);
+    $("#unfavoriteSong").attr("href", unfavoriteUrl);
 }
 
 
-function showNavigationLinks() {
+function showLinks() {
     let currentId = parseInt($(".js-next").attr("data-id"));
+    //Checks if song is favorited, showing appropriate link
+    showFavoriteLinks(currentId);
+
     //If song is the first song, hide the previous link, if its the last song, hide the next link
     $.get("/songs/last", function(song) {
         let lastSongId = song["id"];
@@ -130,5 +139,23 @@ function showNavigationLinks() {
             $(".js-next").hide();
         }
     })
-
 }
+
+function showFavoriteLinks(songId) {
+    let isFav = false;
+    $.get("/users/current.json", function(user) {
+        for (let i = 0; i < user["user_favorite_songs"].length; i++) {
+            if(user["user_favorite_songs"][i].song_id === songId) {
+                $("#unfavoriteSong").show();
+                $("#favoriteSong").hide();
+                isFav = true;
+                break;
+            }
+        }
+        if(!isFav) {
+        $("#unfavoriteSong").hide();
+        $("#favoriteSong").show();
+    }
+    });
+}
+ 

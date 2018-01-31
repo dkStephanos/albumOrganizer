@@ -10,11 +10,9 @@
 <div class="options">
 
     <% if current_user %>
-        <% if @song.users.include?(current_user)%>
-            <%= link_to "Favorite", favorite_album_song_path(@song, type: "unfavorite"), method: :put %>
-        <% else %>
-            <%= link_to "Unfavorite",   favorite_album_song_path(@song, type: "favorite"), method: :put %>
-        <% end %>
+            <%= link_to "Favorite", favorite_album_song_path(@song, type: "favorite"), method: :put, id: "favoriteSong" %>
+
+            <%= link_to "Unfavorite",   favorite_album_song_path(@song, type: "unfavorite"), method: :put, id: "unfavoriteSong" %>
     <% end %>
 
     <% if user_song?(@song) %>
