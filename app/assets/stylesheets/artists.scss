@@ -6,7 +6,8 @@
     font-family: "Arial Black", Serif;
     overflow: auto;
     padding-left: 20px;
-    display: block;
+    float: left;
+    width: 250px;
     
 }
 
@@ -28,5 +29,16 @@
 	font-family: "Arial Black", Serif;
     padding-left: 20px;
     width: 250px;
+    overflow: auto;
+}
+
+.artistForm {
+    float: right;
+    overflow: auto;
+    padding-right: 20px;
+    width: 500px;
+}
+
+.artistIndex {
     overflow: auto;
 }

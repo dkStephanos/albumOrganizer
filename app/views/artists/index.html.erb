@@ -1,9 +1,45 @@
 <%= javascript_include_tag "templates/artists" %>
 
-<%= render partial: "artist_list", locals: {artists: @artists} %>
+<div class="artistIndex">	
 
+	<%= render partial: "artist_list", locals: {artists: @artists} %>
     
-<br></br>
+	<div class="artistForm" style="display: none;" >
+
+	    <h1>Create a new artist</h1>
+
+		<form class="new_artist" id="new_artist" enctype="multipart/form-data" action="/artists" accept-charset="UTF-8" method="post" authenticity_token: true>
+
+	    
+	    
+		    <div class="field"> <label for="artist_name">Name:</label><br>
+		    <input type="text" name="artist[name]" id="artist_name"></div><br>
+		    
+		    <div class="field"><label for="artist_bio">Bio:</label><br>
+		    <input type="textarea" name="artist[bio]" id="artist_bio"></div><br>
+
+		    <div class="feild">
+		      <label for="artist_avatar">Artist Avatar:</label>
+		      <input type="file" name="artist[avatar]" id="artist_avatar">
+		    </div>
+		    
+		    <input type=hidden name="authenticity_token" value="<%= form_authenticity_token %>">
+		    
+		    <br><br>
+
+		    <div class="actions"><input type="submit" name="commit" value="Submit" class="btn btn-primary" data-disable-with="Submit" id="artistSubmit"></div>
+
+		</form>
+
+		<br><br>
+
+		<div class="actions"><a href="/artists">Cancel</a></div>
+	  
+	</div>
+
+</div>
+
+<br>
     
 <div class="options">
     <%= link_to "Add Artist", new_artist_path %>
