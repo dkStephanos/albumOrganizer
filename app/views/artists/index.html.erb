@@ -8,28 +8,7 @@
 
 	    <h1>Create a new artist</h1>
 
-		<form class="new_artist" id="new_artist" enctype="multipart/form-data" action="/artists" accept-charset="UTF-8" method="post" authenticity_token: true>
-
-	    
-	    
-		    <div class="field"> <label for="artist_name">Name:</label><br>
-		    <input type="text" name="artist[name]" id="artist_name"></div><br>
-		    
-		    <div class="field"><label for="artist_bio">Bio:</label><br>
-		    <input type="textarea" name="artist[bio]" id="artist_bio"></div><br>
-
-		    <div class="feild">
-		      <label for="artist_avatar">Artist Avatar:</label>
-		      <input type="file" name="artist[avatar]" id="artist_avatar">
-		    </div>
-		    
-		    <input type=hidden name="authenticity_token" value="<%= form_authenticity_token %>">
-		    
-		    <br><br>
-
-		    <div class="actions"><input type="submit" name="commit" value="Submit" class="btn btn-primary" data-disable-with="Submit" id="artistSubmit"></div>
-
-		</form>
+		<%= render 'form' %>
 
 		<br><br>
 

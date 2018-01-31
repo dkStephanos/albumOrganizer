@@ -11,6 +11,7 @@ class ArtistsController < ApplicationController
     end
     
     def index
+        @artist = Artist.new
         @artists = Artist.order(:name)
         respond_to do |format|
             format.html { render :index }
