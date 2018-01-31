@@ -29,7 +29,7 @@ function attachListeners() {
         // On click, prevent default and show new artist form/hide add artist button
         event.preventDefault();
         $(".artistForm").show();
-        $("#fileUpload").hide();
+        $("#avatarUpload").hide();
         $("#addArtist").hide();
     });
     $("#new_artist").unbind('submit').bind('submit',function() {

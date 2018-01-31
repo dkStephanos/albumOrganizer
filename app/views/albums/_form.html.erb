@@ -22,7 +22,7 @@
     <div class="field"><%= f.label :artist_id, "Artist:" %><br>
     <%= f.collection_select(:artist_id, Artist.all, :id, :name, {:selected => params[:artist_id]}) %></div><br>
 
-    <div class="feild">
+    <div class="feild" id="albumCoverUpload">
       <%= f.label :album_cover , "Album Cover:" %>
       <%= f.file_field :album_cover %>
     </div>

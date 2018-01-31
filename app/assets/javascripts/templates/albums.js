@@ -29,6 +29,7 @@ function attachListeners() {
         // On click, prevent default and show new album form/hide add album button
         event.preventDefault();
         $(".albumForm").show();
+        $("#albumCoverUpload").hide();
         $("#addAlbum").hide();
     });
     $("#new_album").unbind('submit').bind('submit',function() {
