@@ -11,6 +11,9 @@ function loadArtists(artists) {
 function getArtists() {
 	$.get("/artists.json", function(artists) {
 		for (var i = 0; i < artists.length; i++) {
+			if(artists[i].avatar.includes("blank")) {
+				artists[i].avatar = "/assets/" + artists[i].avatar;
+			}
 			artists[i].avatar = artists[i].avatar.replace("original", "thumb");
 		}
 		loadArtists(artists);

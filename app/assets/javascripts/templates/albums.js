@@ -14,6 +14,9 @@ function loadAlbums(albums) {
 function getAlbums() {
 	$.get("/albums.json", function(albums) {
 		for (var i = 0; i < albums.length; i++) {
+			if(albums[i].album_cover.includes("blank")) {
+				albums[i].album_cover = "/assets/" + albums[i].album_cover;
+			}
 			albums[i].album_cover = albums[i].album_cover.replace("original", "thumb");
 		}
 		loadAlbums(albums);
