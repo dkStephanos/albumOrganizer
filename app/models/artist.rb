@@ -10,6 +10,9 @@ class Artist < ApplicationRecord
     validates :name, presence: true
     validates :name, uniqueness: true
 
-    has_attached_file :avatar, default_url: ':style/blank-avatar.png', styles: { thumb: "100x100#", icon: "250x250>" }
+    has_attached_file :avatar, default_url: ':style/blank-avatar.png', 
+    styles: { thumb: "100x100#", icon: "250x250>" },
+	default_url: "assets/:style/blank-avatar.png"
+
     validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 end
