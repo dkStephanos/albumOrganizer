@@ -40,6 +40,7 @@ class AlbumsController < ApplicationController
           if @album.save
             flash[:notice] = 'Album was successfully created.'
             format.json { render json: { status: :true } }
+            format.html { render :show }
           else
             format.html { render :new }
           end

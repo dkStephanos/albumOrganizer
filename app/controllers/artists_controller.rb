@@ -33,7 +33,7 @@ class ArtistsController < ApplicationController
         respond_to do |format|
           if @artist.save
             flash[:notice] = 'Artist was successfully created.'
-            format.html { redirect_to @artist }
+            format.json { render json: { status: :true } }
           else
             format.html { render :new }
           end
