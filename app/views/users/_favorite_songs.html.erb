@@ -5,7 +5,7 @@
     <% else %>
         <ul>
             <% current_user.favorite_songs.each do |song| %>
-                <li><%= link_to ("#{song.name} [#{song.time}]"), album_song_path(song) %></li>
+                <li><%= link_to ("#{song.name} [#{song.time}]"), album_song_path(song.album, song) %></li>
             <% end %>
         </ul>
     <% end %>

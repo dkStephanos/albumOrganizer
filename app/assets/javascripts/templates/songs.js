@@ -3,6 +3,7 @@ $(document).on("ready turbolinks:load", function() {
 });
 
 function loadSongs(songs) {
+	debugger;
   var template = Handlebars.compile(document.getElementById("songLi-template").innerHTML);
   var result = template(songs);
   $("#songList")[0].innerHTML = result;

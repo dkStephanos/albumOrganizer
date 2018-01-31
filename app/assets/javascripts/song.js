@@ -1,7 +1,7 @@
+$(document).ready(() => showNavigationLinks())
 $(document).on("ready turbolinks:load", function() {
     if($(".songs.show").length !== 0) {
         attachListeners();
-        showNavigationLinks();
     }
 });
 
