@@ -32,10 +32,9 @@ function attachListeners() {
         $("#avatarUpload").hide();
         $("#addArtist").hide();
     });
-    $("#new_artist").unbind('submit').bind('submit',function() {
+    $("#new_artist").unbind('submit').bind('submit', function() {
     	//prevent form from submitting the default way
      	event.preventDefault();
-
       	let values = $(this).serialize();
       	submitNewArtist(values);
 	});

@@ -32,10 +32,9 @@ function attachListeners() {
         $("#albumCoverUpload").hide();
         $("#addAlbum").hide();
     });
-    $("#new_album").unbind('submit').bind('submit',function() {
+    $("#new_album").unbind('submit').bind('submit', function(){
     	//prevent form from submitting the default way
      	event.preventDefault();
-
       	let values = $(this).serialize();
       	submitNewAlbum(values);
 	});
@@ -43,9 +42,7 @@ function attachListeners() {
 
 function submitNewAlbum(values) {
 	let submitting = $.post('/albums', values);
-	//debugger;
 	submitting.done( function(data) {
-		debugger;
 		getAlbums();
 		$(".albumForm").hide();
         $("#addAlbum").show();
