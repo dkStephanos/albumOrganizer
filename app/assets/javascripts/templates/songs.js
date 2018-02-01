@@ -11,9 +11,11 @@ function Song(id, name, album_id) {
 Song.prototype.getTime = function(length) {
 	//Convert length into minutes and seconds
     let mins = Math.floor(length / 60);
-    let secs = length % 60;
+    let secs = (length % 60);
     //Return the formatted song time
-    this.time = `${mins}:${secs}`;
+    this.time = `${mins}:`;
+    this.time += (secs < 10 ? "0" : "");
+    this.time += `${secs}`;
 }
 
 function loadSongs(songs) {

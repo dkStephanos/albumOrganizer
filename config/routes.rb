@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users, :only => [:show]
   
   resources :albums do
-    resources :songs, :only => [:show, :new, :edit] do
+    resources :songs do
       put :favorite, on: :member
     end
   end

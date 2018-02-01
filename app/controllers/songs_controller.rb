@@ -3,7 +3,7 @@ require 'pry'
 class SongsController < ApplicationController
     
     def show
-        @song = Song.find(params[:id])
+        set_song
         respond_to do |format|
             format.html { render :show }
             format.json { render json: @song }
@@ -11,14 +11,14 @@ class SongsController < ApplicationController
     end
     
     def new
-      @album = Album.find_by(id: params[:album_id])
+      set_album
       @song = @album.songs.build
     end
     
     def edit
       #Checks to confirm there is an album id in params
       if params[:album_id]
-        @album = Album.find_by(id: params[:album_id])
+        set_album
         if @album.nil?
           redirect_to albums_path(@album), alert: "Album not found."
         else
@@ -31,11 +31,12 @@ class SongsController < ApplicationController
     end
     
     def create
-        @song = Song.new(song_params)
+        set_album
+        @song = @album.songs.build(song_params)
         respond_to do |format|
           if @song.save
             flash[:notice] = 'Song was successfully created.'
-            format.html { redirect_to album_song_path(@song) }
+            format.html { redirect_to album_path(@album) }
           else
             format.html { render :new }
           end
@@ -55,10 +56,12 @@ class SongsController < ApplicationController
     end
     
     def destroy
+      set_song
+      set_album
         @song.destroy
         respond_to do |format|
           flash[:notice] = 'Song was successfully destroyed.'
-          format.html { redirect_to songs_url }
+          format.html { redirect_to  @album }
         end
     end
     
@@ -91,6 +94,10 @@ class SongsController < ApplicationController
     
     def set_song
         @song = Song.find(params[:id])
+    end
+
+    def set_album
+      @album = Album.find_by(id: params[:album_id])
     end
     
     def song_params

@@ -2,6 +2,7 @@ $(document).on("ready turbolinks:load", function() {
     if($(".songs.show").length !== 0) {
         attachListeners();
         showLinks();
+        thisSong();
     }
 });
 
@@ -19,6 +20,16 @@ function attachListeners() {
         // On click, prevent default and pull in song id from form field
         event.preventDefault();
         lastSong();
+    });
+}
+
+function thisSong() {
+    getAlbumId();
+    let songId = parseInt($(".js-next").attr("data-id"));
+    const url = "/albums/" + albumId + "/songs/" + songId + ".json";
+    //Obtain song data with jQuery call to JSON object, parsing response back into HTML fields
+    $.get(url, function(song) {
+        updateAlbumCover(song);
     });
 }
 
@@ -104,6 +115,9 @@ function updateFields(song) {
 function updateAlbumCover(song) {
     //Saves url of album cover and converts it to 'icon'
     let image_url =  song["album"]["album_cover"];
+    if(image_url.includes("blank")) {
+        image_url = "/assets/" + image_url;
+    }
     let icon_url = image_url.replace("original", "icon");
     $("#songAlbumCover").attr("src", icon_url);
 }
