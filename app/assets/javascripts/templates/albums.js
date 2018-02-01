@@ -1,9 +1,9 @@
-$(document).on("ready turbolinks:load", function() {
-	if($(".albums.index").length !== 0) {
+document.addEventListener("turbolinks:load", function() {
+  if($(".albums.index").length !== 0) {
 		getAlbums();
-		attachListeners();
+		attachAlbumListeners();
 	}
-});
+})
 
 function loadAlbums(albums) {
   var template = Handlebars.compile(document.getElementById("albumLi-template").innerHTML);
@@ -23,7 +23,7 @@ function getAlbums() {
 	});
 }
 
-function attachListeners() {
+function attachAlbumListeners() {
 	//Attaches listener for 'Add Album' link
     $("#addAlbum").on("click", function(event) {
         // On click, prevent default and show new album form/hide add album button

@@ -1,6 +1,6 @@
-$(document).on("ready turbolinks:load", function() {
-	if($(".albums.show").length !== 0) getSongs();
-});
+document.addEventListener("turbolinks:load", function() {
+  if($(".albums.show").length !== 0) getSongs();
+})
 
 function Song(id, name, album_id) {
 	this.id = id;

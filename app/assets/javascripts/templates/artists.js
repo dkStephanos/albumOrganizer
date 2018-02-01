@@ -1,9 +1,10 @@
-$(document).on("ready turbolinks:load", function() {
-	if($(".artists.index").length !== 0) {
+document.addEventListener("turbolinks:load", function() {
+  if($(".artists.index").length !== 0) {
 		getArtists();
-		attachListeners();
+		attachArtistListeners();
 	}
-});
+})
+
 
 function loadArtists(artists) {
   var template = Handlebars.compile(document.getElementById("artistLi-template").innerHTML);
@@ -23,7 +24,7 @@ function getArtists() {
 	});
 }
 
-function attachListeners() {
+function attachArtistListeners() {
 	//Attaches listener for 'Add Artist' link
     $("#addArtist").on("click", function(event) {
         // On click, prevent default and show new artist form/hide add artist button

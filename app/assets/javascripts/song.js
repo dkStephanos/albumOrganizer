@@ -1,15 +1,16 @@
-$(document).on("ready turbolinks:load", function() {
+document.addEventListener("turbolinks:load", function() {
     if($(".songs.show").length !== 0) {
-        attachListeners();
-        showLinks();
-        getIds();
-        thisSong();
+        attachSongListeners();
+        if(songIds.length === 0) getIds();
     }
-});
+})
+
 
 let albumId = 0;
+let songIds = [];
+let currentIdIndex = 0;
 
-function attachListeners() {
+function attachSongListeners() {
     //Attaches listener for 'Next Song' link
     $(".js-next").on("click", function(event) {
         // On click, prevent default and pull in song id from form field
@@ -24,13 +25,10 @@ function attachListeners() {
     });
 }
 
-function getIds() {
-    
-}
-
 function thisSong() {
-    getAlbumId();
-    let songId = parseInt($(".js-next").attr("data-id"));
+    let songId = songIds[currentIdIndex];
+    updateNavigationLinks(songId);
+    showFavoriteLinks(songId);
     const url = "/albums/" + albumId + "/songs/" + songId + ".json";
     //Obtain song data with jQuery call to JSON object, parsing response back into HTML fields
     $.get(url, function(song) {
@@ -38,23 +36,38 @@ function thisSong() {
     });
 }
 
-function nextSong() {
+function getIds() {
     getAlbumId();
-    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    const url = "/albums/" + albumId + "/songs.json";
+    $.get(("/albums/" + albumId + "/songs.json"), function(songs) {
+        for (let i = 0; i < songs.length; i++) {
+            songIds.push(songs[i].id);
+        }
+        setCurrentId();
+        thisSong();
+    });
+}
+
+function setCurrentId() {
+    let songId = parseInt($(".js-next").attr("data-id"));
+    currentIdIndex = songIds.indexOf(songId);
+}
+
+function nextSong() {
+    let nextId = songIds[currentIdIndex + 1];
     const url = "/albums/" + albumId + "/songs/" + nextId + ".json";
     //Obtain song data with jQuery call to JSON object, parsing response back into HTML fields
     $.get(url, function(song) {
-        updateSongData(song, nextId, "next");
+        updateSongData(song, nextId);
     });
 }
 
 function lastSong() {
-    getAlbumId();
-    let lastId = parseInt($(".js-last").attr("data-id")) - 1;
+    let lastId = songIds[currentIdIndex - 1];
     const url = "/albums/" + albumId + "/songs/" + lastId + ".json";
     //Obtain song data with jQuery call to JSON object, parsing response back into HTML fields
     $.get(url, function(song) {
-        updateSongData(song, lastId, "last");
+        updateSongData(song, lastId);
     });
 }
 
@@ -62,7 +75,7 @@ function getAlbumId() {
     albumId = parseInt($(".js-next").attr("album-id"));
 }
 
-function updateSongData(song, newId, type) {
+function updateSongData(song, newId) {
     //Sets html equal to song attributes 
     updateFields(song);
     //Saves url of album cover and converts it to 'icon'
@@ -72,41 +85,23 @@ function updateSongData(song, newId, type) {
     //Updates the favorite links
     showFavoriteLinks(song.id);
     //Updates or Removes the 'Next Song/Last Song' link depending on whether or not another song exists in the collection
-    if(type === "next") {
-        updateNextSongLink(song, newId)  
+    updateNavigationLinks(newId)
+}
+
+function updateNavigationLinks(newId) {
+    //Checks to see if there is a following song in the array, if so, updates the 'Next Song' link appropriately, if not, removes it. 
+    if((songIds.indexOf(newId) + 1) < songIds.length) {
+        $(".js-next").show();
+        $(".js-next").attr("data-id", newId);
     } else {
-        updateLastSongLink(song, newId)
-    }
-}
-
-function updateNextSongLink(song, newId) {
-    //Checks to see if there is a following song in the database, if so, updates the 'Next Song' link appropriately, if not, removes it. 
-    const url = "/albums/" + albumId + "/songs/" + (newId + 1) + ".json";
-    $.get(url, function() {
-        $(".js-next").attr("data-id", song["id"]);
-        $(".js-next").attr("album-id", song["album"]["id"]);       
-    }).fail(function() {
         $(".js-next").hide();
-    });
-    //Regardless, update the 'Last Song' link and make sure it is visible
-    $(".js-last").show();
-    $(".js-last").attr("data-id", song["id"]); 
-    $(".js-last").attr("album-id", song["album"]["id"]);  
-}
-
-function updateLastSongLink(song, newId) {
-    //Checks to see if there is a preceeding song in the database, if so, updates the 'Last Song' link appropriately, if not, removes it. 
-    const url = "/albums/" + albumId + "/songs/" + (newId - 1) + ".json";
-    $.get(url, function() {
-        $(".js-last").attr("data-id", song["id"]);
-        $(".js-last").attr("album-id", song["album"]["id"]);      
-    }).fail(function() {
+    }
+    if((songIds.indexOf(newId) - 1) > -1) {
+        $(".js-last").show();
+        $(".js-last").attr("data-id", newId);
+    } else {
         $(".js-last").hide();
-    });
-    //Regardless, update the 'Next Song' link and make sure it is visible 
-    $(".js-next").show();
-    $(".js-next").attr("data-id", song["id"]);
-    $(".js-next").attr("album-id", song["album"]["id"]);   
+    }
 }
 
 function updateFields(song) {
