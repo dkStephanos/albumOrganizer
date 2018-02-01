@@ -86,6 +86,11 @@ class SongsController < ApplicationController
       end
     end
 
+    def index
+      set_album
+      render json: @album.songs
+    end
+
     def last
       render json: Song.last
     end
