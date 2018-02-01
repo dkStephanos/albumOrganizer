@@ -1,7 +1,7 @@
 document.addEventListener("turbolinks:load", function() {
     if($(".songs.show").length !== 0) {
         attachSongListeners();
-        if(songIds.length === 0) getIds();
+        getIds();
     }
 })
 
@@ -49,7 +49,7 @@ function getIds() {
 }
 
 function setCurrentId() {
-    let songId = parseInt($(".js-next").attr("data-id"));
+    let songId = parseInt($(".js-next").attr("data-id")) - 1;
     currentIdIndex = songIds.indexOf(songId);
 }
 
@@ -85,20 +85,24 @@ function updateSongData(song, newId) {
     //Updates the favorite links
     showFavoriteLinks(song.id);
     //Updates or Removes the 'Next Song/Last Song' link depending on whether or not another song exists in the collection
-    updateNavigationLinks(newId)
+    updateNavigationLinks(newId);
+    //Updates currentIdIndex to get current id of song
+    setCurrentId();
 }
 
 function updateNavigationLinks(newId) {
     //Checks to see if there is a following song in the array, if so, updates the 'Next Song' link appropriately, if not, removes it. 
-    if((songIds.indexOf(newId) + 1) < songIds.length) {
+    let nextIndex = songIds.indexOf(newId) + 1;
+    let lastIndex = songIds.indexOf(newId) - 1;
+    if(nextIndex < songIds.length) {
         $(".js-next").show();
-        $(".js-next").attr("data-id", newId);
+        $(".js-next").attr("data-id", songIds[nextIndex]);
     } else {
         $(".js-next").hide();
     }
-    if((songIds.indexOf(newId) - 1) > -1) {
+    if(lastIndex > -1) {
         $(".js-last").show();
-        $(".js-last").attr("data-id", newId);
+        $(".js-last").attr("data-id", songIds[lastIndex]);
     } else {
         $(".js-last").hide();
     }
@@ -137,22 +141,19 @@ function updateOptions(song) {
 
 
 function showLinks() {
-    let currentId = parseInt($(".js-next").attr("data-id"));
+    let currentId = songIds[currentIdIndex];
     //Checks if song is favorited, showing appropriate link
     showFavoriteLinks(currentId);
 
     //If song is the first song, hide the previous link, if its the last song, hide the next link
-    $.get("/songs/last", function(song) {
-        let lastSongId = song["id"];
-        if(currentId === 1) {
-            $(".js-last").hide();
-            $(".js-next").show();
-        } 
-        if(currentId === lastSongId) {
-            $(".js-last").show();
-            $(".js-next").hide();
-        }
-    })
+    if(currentIdIndex === 0) {
+        $(".js-last").hide();
+        $(".js-next").show();
+    } 
+    if(currentIdIndex === (songIds.length - 1)) {
+        $(".js-last").show();
+        $(".js-next").hide();
+    }
 }
 
 function showFavoriteLinks(songId) {
