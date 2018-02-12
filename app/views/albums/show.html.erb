@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <%= render partial: "album_data", locals: {album: @album} %>
 
 <%= render partial: "song_list", locals: {album: @album} %>
