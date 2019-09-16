@@ -2,12 +2,7 @@ class AccessRequestsController < ApplicationController
   protect_from_forgery with: :exception
     
   	def new
-  		@requester = User.find(params[:currentUserId])
-        @requested = User.find(params[:userId])
-
-        access_request = AccessRequest.new()
-        access_request.requester = @requester
-        access_request.requested = @requested
+      access_request = AccessRequest.create(requester_id: params[:currentUserId], requested_id: params[:userId])
 	      if access_request.save
 	        flash[:notice] = 'Request was made successfully.'
 	        redirect_to "/home"

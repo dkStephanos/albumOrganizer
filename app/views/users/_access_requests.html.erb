@@ -1,0 +1,12 @@
+<div class="userSongList">
+    <h2>Access Requests</h2>
+    <% if false %>
+        <p>No Access Requests at this time</p>
+    <% else %>
+        <ul>
+            <% requests.all do |request| %>
+                <li><%= link_to "Approve", controller: "AccessRequests", action: "approve" , actionRequestId: access_request.id %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

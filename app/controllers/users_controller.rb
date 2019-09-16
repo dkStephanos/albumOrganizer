@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
 
     def home
-
+        @access_requests = current_user.access_requests 
     end
 
     def current

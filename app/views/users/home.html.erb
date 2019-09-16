@@ -9,7 +9,7 @@
 
     <%= render 'current_user_artists' %>
 
-    <%= render 'favorite_songs' %>
+    <%= render partial: "access_requests", locals: {requests: @access_requests}  %>
 
 </div>
 
