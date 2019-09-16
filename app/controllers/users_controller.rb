@@ -23,6 +23,10 @@ class UsersController < ApplicationController
     
     end
 
+    def home
+    
+    end
+
     def current
         render json: current_user 
     end
