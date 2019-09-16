@@ -10,7 +10,9 @@ class User < ApplicationRecord
   has_many :songs, through: :albums
   has_many :user_favorite_songs
   has_many :favorite_songs, through: :user_favorite_songs, source: :song
-  has_many :access_requests
+  has_many :sent_access_requests, class_name: "AccessRequest", foreign_key: "requester_id"
+  has_many :received_access_requests, class_name: "AccessRequest", foreign_key: "requested_id"
+
          
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
