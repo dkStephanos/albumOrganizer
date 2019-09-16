@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     
     def show
         set_user
+        unless current_user.id == @user.id
+            flash[:notice] = "You don't have access to that User's Collection!"
+            redirect_to "/home" 
+            return
+        end
     end
 
     def home
