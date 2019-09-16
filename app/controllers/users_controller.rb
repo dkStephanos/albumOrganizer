@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
 
     def home
-        @access_requests = AccessRequest.all
+        @access_requests = current_user.received_access_requests
     end
 
     def current
