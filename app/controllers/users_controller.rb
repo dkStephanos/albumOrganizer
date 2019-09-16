@@ -10,6 +10,14 @@ class UsersController < ApplicationController
             redirect_to action: 'new'
         end
     end
+
+    def index
+        @users = User.order(:name)
+        respond_to do |format|
+            format.html { render :index }
+            format.json { render json: @users }
+        end
+    end
     
     def show
     

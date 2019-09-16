@@ -1,0 +1,17 @@
+<div class="greeting">
+    <h1>Welcome, <%= current_user.email %>!</h1>
+</div>
+
+<div class="userData">
+
+<%= render partial: "user_list", locals: {users: @users} %>
+
+</div>
+
+<br></br>
+
+<div class="links">
+    <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
+    <%= link_to("All Artists", artists_path) %>
+    <%= link_to("All Albums", albums_path) %>
+</div>

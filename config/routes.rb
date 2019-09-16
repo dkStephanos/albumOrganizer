@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/songs/last' => 'songs#last'
   get '/users/current' => 'users#current'
   
-  resources :users, :only => [:show]
+  resources :users, :only => [:show, :index]
   
   resources :albums do
     resources :songs do
