@@ -18,6 +18,14 @@ class AccessRequestsController < ApplicationController
   	end
 
   	def approve
-
+  		access_request = AccessRequest.find(params[:id])
+  		access_request.isApproved = true
+  		if access_request.save
+  			flash[:notice] = 'Request approved.'
+	        redirect_to "/home"
+	    else
+			flash[:notice] = @access_request.errors
+	        redirect_to "/home"
+	   	end
   	end
 end

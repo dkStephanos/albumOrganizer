@@ -20,7 +20,7 @@
             <% requests.each do |request| %>
                <% if request.isApproved == false %>
                     <li>User: <%=User.find(request.requester_id).email%>
-                    : <%= link_to "Approve", "/access_requests/approve" , actionRequestId: request.id %></li>
+                    : <%= link_to "Approve", "/access_requests/approve/#{request.id}" %></li>
                <% end %>
             <% end %>
         </ul>
