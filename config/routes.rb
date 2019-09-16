@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   get '/welcome' => 'application#welcome'
+  get '/home' => 'users#home'
   get '/songs/last' => 'songs#last'
   get '/users/current' => 'users#current'
   
-  resources :users, :only => [:show, :index, :home]
+  resources :users, :only => [:show, :index]
   
   resources :albums do
     resources :songs do
