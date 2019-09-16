@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requester: one
+  requested: one
+  isApproved: false
+
+two:
+  requester: two
+  requested: two
+  isApproved: false

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128183514) do
+ActiveRecord::Schema.define(version: 20190916021122) do
+
+  create_table "access_requests", force: :cascade do |t|
+    t.integer "requester_id"
+    t.integer "requested_id"
+    t.boolean "isApproved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requested_id"], name: "index_access_requests_on_requested_id"
+    t.index ["requester_id"], name: "index_access_requests_on_requester_id"
+  end
 
   create_table "albums", force: :cascade do |t|
     t.string "name"

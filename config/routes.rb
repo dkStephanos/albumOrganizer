@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   get '/home' => 'users#home'
   get '/songs/last' => 'songs#last'
   get '/users/current' => 'users#current'
+  get '/access_requests/approve' => 'access_requests#approve'
   
   resources :users, :only => [:show, :index]
+  resources :access_requests, :only => [:create]
   
   resources :albums do
     resources :songs do
