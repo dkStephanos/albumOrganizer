@@ -2,11 +2,18 @@
     <h1>Albums</h1>
     <% if albums.empty? %>
         <p>No Albums currently added</p>
-    <% else %>
-        <ul>
-            <% albums.each do |album| %>
-                <li><%= link_to album.name, album_path(album) %></li>
-            <% end %>
-        </ul>
     <% end %>
+        <div id="albumList"></div>
 </div>
+
+<script id="albumLi-template" type="text/x-handlebars-template">
+    <ul>
+    {{#each this}}
+        <li>
+            <img src="{{album_cover}}" alt="{{name}}">
+            <br>
+            <a href="/albums/{{id}}">{{name}}</a>
+        </li>
+    {{/each}}
+    </ul>
+</script>

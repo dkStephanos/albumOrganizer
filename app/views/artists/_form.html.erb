@@ -13,16 +13,21 @@
 
 
   <div class="field"> <%= f.label :name, "Name:" %><br>
-  <%= f.text_field :name %></div>
+  <%= f.text_field :name %></div><br>
 
   <div class="field"><%= f.label :bio, "Bio:" %><br>
-  <%= f.text_area :bio %></div>
+  <%= f.text_area :bio %></div><br>
+
+  <div class="feild" id="albumCoverUpload">
+      <%= f.label :avatar, "Avatar:" %>
+      <%= f.file_field :avatar %>
+  </div>
   
   <br></br>
   
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
 
-  <div class="actions"><%= f.submit 'Submit', :class => 'btn btn-primary' %></div>
+  <div class="actions"><%= f.submit 'Submit', :class => 'btn btn-primary', :id => "artistSubmit" %></div>
 
 <% end %>

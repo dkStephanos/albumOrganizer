@@ -1,10 +1,27 @@
-<%= render partial: "artist_list", locals: {artists: @artists} %>
+<%= javascript_include_tag "templates/artists" %>
 
+<div class="artistIndex">	
+
+	<%= render partial: "artist_list", locals: {artists: @artists} %>
     
-<br></br>
+	<div class="artistForm" style="display: none;" >
+
+	    <h1>Create a new artist</h1>
+
+		<%= render 'form' %>
+
+		<br><br>
+
+		<div class="actions"><a href="/artists">Cancel</a></div>
+	  
+	</div>
+
+</div>
+
+<br>
     
 <div class="options">
-    <%= link_to "Add Artist", new_artist_path %>
+    <%= link_to "Add Artist", new_artist_path, id: "addArtist" %>
 </div>
 
 

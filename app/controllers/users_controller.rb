@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     end
     
     def show
-        
+    
+    end
+
+    def current
+        render json: current_user 
     end
 end

@@ -2,10 +2,19 @@ class AlbumsController < ApplicationController
     
     def show
         @album = Album.find(params[:id])
+        respond_to do |format|
+            format.html { render :show }
+            format.json { render json: @album }
+        end
     end
     
     def index
-        @albums = Album.all
+        @album = Album.new
+        @albums = Album.order(:name)
+        respond_to do |format|
+            format.html { render :index }
+            format.json { render json: @albums }
+        end
     end
     
     def new
@@ -30,7 +39,9 @@ class AlbumsController < ApplicationController
         @album = Album.new(album_params)
         respond_to do |format|
           if @album.save
-            format.html { redirect_to @album, notice: 'Album was successfully created.' }
+            flash[:notice] = 'Album was successfully created.'
+            format.json { render json: { status: :true } }
+            format.html { render :show }
           else
             format.html { render :new }
           end
@@ -41,7 +52,8 @@ class AlbumsController < ApplicationController
         set_album
         respond_to do |format|
           if @album.update(album_params)
-            format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+            flash[:notice] = 'Album was successfully updated.'
+            format.html { redirect_to @album }
           else
             format.html { render :edit }
           end
@@ -49,9 +61,11 @@ class AlbumsController < ApplicationController
     end
     
     def destroy
+        set_album
         @album.destroy
         respond_to do |format|
-          format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+            flash[:notice] = 'Album was successfully destroyed.'
+            format.html { redirect_to albums_url }
         end
     end
     
@@ -62,6 +76,6 @@ class AlbumsController < ApplicationController
     end
     
     def album_params
-        params.require(:album).permit(:name, :release_date, :artist_id)
+        params.require(:album).permit(:name, :release_date, :album_cover, :artist_id)
     end
 end

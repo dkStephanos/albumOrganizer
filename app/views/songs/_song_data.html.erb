@@ -1,13 +1,22 @@
 <div class="songData">
-    <h1><%= song.name %></h1>
-    <p>Artist: <%= song.artist.name %></p>
-    <p>Album: <%= song.album.name %></p>
-    <p>Genre: <%= song.genre.name %></p>
+    <div class="albumCover">
+        <img id="songAlbumCover" src="<%=song.album.album_cover.url(:icon)%>">
+    </div>
+
+    <h1 id="songTitle"><%= song.name %></h1>
+    <label>Artist: </label>
+    <p id="songArtist"><%= song.artist.name %></p>
+    <label>Album: </label>
+    <p id="songAlbum"><%= song.album.name %></p>
+    <label>Genre: </label>
+    <p id="songGenre"><%= song.genre.name %></p>
     
-    <% if user_song?(song) %>
-        <div class="options">
-            <%= link_to "Edit Song", edit_song_path(song) %>
-            <%= link_to "Delete Song", song_path(song), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }%>
-        </div>
-    <% end %>
+</div>
+
+<div class="navigation">
+
+    <a href="#" class="js-last" album-id="<%=song.album.id%>" data-id="<%=song.id - 1%>">Last Song</a>
+
+    <a href="#" class="js-next" album-id="<%=song.album.id%>" data-id="<%=song.id + 1%>">Next Song</a>
+
 </div>

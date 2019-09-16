@@ -1,15 +1,32 @@
-<%= render partial: "album_list", locals: {albums: @albums} %>
+<%= javascript_include_tag "templates/albums" %>
 
-    <br></br>
-    
-    <div class="options">
-        <%= link_to "Add Album", new_album_path %>
-    </div>
+<div class="albumIndex">
 
+
+	<%= render partial: "album_list", locals: {albums: @albums} %>
+
+	<div class="albumForm" style="display: none;">
+
+	    <h1>Create a new album</h1>
+
+		<%= render 'form' %>
+
+		<br><br>
+
+		<div class="actions"><a href="/albums">Cancel</a></div>
+	  
+	</div>
+
+</div>
+
+	<div class="options">
+	        <%= link_to "Add Album", new_album_path, id: "addAlbum" %>
+	        	
+	</div>
 
 <br></br>
 
 <div class="links">
-    <%= link_to "Back to User", user_path(current_user) %>
-    <%= link_to "All Artists", artists_path %>
+	    <%= link_to "Back to User", user_path(current_user) %>
+	    <%= link_to "All Artists", artists_path %>
 </div>
