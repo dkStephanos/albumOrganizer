@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   get '/songs/last' => 'songs#last'
   get '/users/current' => 'users#current'
   get '/access_requests/approve' => 'access_requests#approve'
+  get '/access_requests/new' => 'access_requests#new'
   
   resources :users, :only => [:show, :index]
-  resources :access_requests, :only => [:create]
   
   resources :albums do
     resources :songs do

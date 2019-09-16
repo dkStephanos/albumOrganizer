@@ -3,6 +3,8 @@
     <% @users.each do |user| %>
     <li>
         <%= link_to user.email, user_path(user) %>
+        <br/>
+       	<%=	link_to "Request Access", :controller => "access_requests", :action => "new", :userId => user.id, :currentUserId => current_user.id  %>
     </li>
 <% end %>
 
