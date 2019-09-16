@@ -1,18 +1,9 @@
 <div class="artistList">
     <h1>Users</h1>
-    <% if users.empty? %>
-        <p>No Users currently added</p>
-    <% end %>
-    <div id="artistList"></div>
+    <% @users.each do |user| %>
+    <li>
+        <%= link_to user.email, user %>
+    </li>
+<% end %>
 
 </div>
-
-<script id="artistLi-template" type="text/x-handlebars-template">
-    <ul>
-    {{#each this}}
-        <li>
-            <a href="/users/{{id}}">{{email}}</a>
-        </li>
-    {{/each}}
-    </ul>
-</script>

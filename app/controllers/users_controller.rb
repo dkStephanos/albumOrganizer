@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        @users = User.order(:name)
+        @users = User.order(:email)
         respond_to do |format|
             format.html { render :index }
             format.json { render json: @users }
