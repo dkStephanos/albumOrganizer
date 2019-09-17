@@ -31,6 +31,16 @@ class UsersController < ApplicationController
     def home
         @access_requests = current_user.received_access_requests
         @borrow_requests = current_user.received_borrow_requests
+        recently_returned = current_user.artists.where(recentlyReturned: true)
+        if recently_returned.count > 0
+            message = "Recently returned artists: "
+            recently_returned.each do |artist|
+                message += artist.name + "  "
+                artist.recentlyReturned = false
+                artist.save
+            end 
+        end
+        flash[:notice] = message
     end
 
     def current
