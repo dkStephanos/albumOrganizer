@@ -1,7 +1,7 @@
 <div class="userSongList">
-    <h4>Users with Access</h4>
+    <h3>Users with Access</h3>
     <% if requests.empty? %>
-        <p>No Users at this time</p>
+        <h4>No Users at this time</h4>
     <% else %>
         <ul>
             <% requests.each do |request| %>
@@ -11,9 +11,9 @@
             <% end %>
         </ul>
     <% end %>
-    <h4>Access Requests</h4>
+    <h3>Access Requests</h3>
     <% if requests.empty? %>
-        <p>No Access Requests at this time</p>
+        <h4>No Access Requests at this time</h4>
     <% else %>
 
         <ul>
