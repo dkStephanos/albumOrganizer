@@ -4,7 +4,9 @@
     <li>
         <%= link_to user.email, user_path(user) %>
         <br/>
-       	<%=	link_to "Request Access", :controller => "access_requests", :action => "new", :userId => user.id, :currentUserId => current_user.id  %>
+       	<% if user.id != current_user.id &&  current_user.sent_access_requests.any? {|r| r.requested_id == user.id } %>
+       		<%=	link_to "Request Access", :controller => "access_requests", :action => "new", :userId => user.id, :currentUserId => current_user.id  %>
+       	<% end %>
     </li>
 <% end %>
 
