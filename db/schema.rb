@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190917140516) do
+ActiveRecord::Schema.define(version: 20190917152203) do
 
   create_table "access_requests", force: :cascade do |t|
     t.integer "requester_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20190917140516) do
     t.boolean "isAccepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "requested_user_id"
     t.index ["artist_id"], name: "index_borrow_requests_on_artist_id"
     t.index ["user_id"], name: "index_borrow_requests_on_user_id"
   end
