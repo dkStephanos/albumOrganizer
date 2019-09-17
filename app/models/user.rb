@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :favorite_songs, through: :user_favorite_songs, source: :song
   has_many :sent_access_requests, class_name: "AccessRequest", foreign_key: "requester_id"
   has_many :received_access_requests, class_name: "AccessRequest", foreign_key: "requested_id"
+  has_many :borrow_requests
 
          
   def self.from_omniauth(auth)

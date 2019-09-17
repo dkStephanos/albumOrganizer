@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190916021122) do
+ActiveRecord::Schema.define(version: 20190917140516) do
 
   create_table "access_requests", force: :cascade do |t|
     t.integer "requester_id"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 20190916021122) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean "isLoaned"
+  end
+
+  create_table "borrow_requests", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "artist_id"
+    t.boolean "isAccepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_borrow_requests_on_artist_id"
+    t.index ["user_id"], name: "index_borrow_requests_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|

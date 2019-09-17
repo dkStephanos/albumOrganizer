@@ -4,6 +4,7 @@ class Artist < ApplicationRecord
     has_many :albums, dependent: :destroy
     has_many :songs, through: :albums
     has_many :genres, -> { distinct }, through: :songs
+    has_one :borrow_request
     
     accepts_nested_attributes_for :albums
     
