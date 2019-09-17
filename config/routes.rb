@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/access_requests/new' => 'access_requests#new'
   get '/borrow_requests/accept/:id' => 'borrow_requests#accept'
   get '/borrow_requests/new/:artistId' => 'borrow_requests#new'
-  get '/borrow_requests/return/:id' => 'borrow_requests#return'
+  get '/borrow_requests/return/:artistId' => 'borrow_requests#return'
   
   resources :users, :only => [:show, :index]
   
