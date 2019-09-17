@@ -1,7 +1,7 @@
 class Artist < ApplicationRecord
     
     belongs_to :user
-    belongs_to :loaned_user, :class_name => "User"
+    belongs_to :loaned_user, :class_name => "User", optional: true
     has_many :albums, dependent: :destroy
     has_many :songs, through: :albums
     has_many :genres, -> { distinct }, through: :songs
