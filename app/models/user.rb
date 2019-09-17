@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :sent_access_requests, class_name: "AccessRequest", foreign_key: "requester_id"
   has_many :received_access_requests, class_name: "AccessRequest", foreign_key: "requested_id"
   has_many :borrow_requests
+  has_many :received_borrow_requests, class_name: "BorrowRequest", foreign_key: "requested_user_id"
+
 
          
   def self.from_omniauth(auth)

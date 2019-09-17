@@ -2,11 +2,13 @@ class BorrowRequestsController < ApplicationController
   protect_from_forgery with: :exception
     
   	def new
-  		if BorrowRequest.where(user_id: current_user.id, artist_id: params[:artistId]).empty? == false
+  		artist = Artist.find(params[:artistId])
+  		user = User.find(artist.user_id)
+  		if BorrowRequest.where(user_id: current_user.id, artist_id: params[:artistId], requested_user_id: user.id).empty? == false
   			flash[:notice] = 'Already Requested.'
   			redirect_to "/home"
   		else
-      		borrow_request = BorrowRequest.create(user_id: current_user.id, artist_id: params[:artistId], isAccepted: false)
+      		borrow_request = BorrowRequest.create(user_id: current_user.id, artist_id: params[:artistId], , requested_user_id: user.id, isAccepted: false)
 	      	if borrow_request.save
 	        	flash[:notice] = 'Request was made successfully.'
 	        	redirect_to "/home"
