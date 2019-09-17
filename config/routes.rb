@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/access_requests/approve/:id' => 'access_requests#approve'
   get '/access_requests/new' => 'access_requests#new'
   get '/borrow_requests/accept/:id' => 'borrow_requests#accept'
-  get '/borrow_requests/new' => 'borrow_requests#new'
+  get '/borrow_requests/new/:artistId' => 'borrow_requests#new'
   
   resources :users, :only => [:show, :index]
   
