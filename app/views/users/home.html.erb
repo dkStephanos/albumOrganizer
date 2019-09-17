@@ -1,0 +1,26 @@
+<div class="greeting">
+	<% if flash[:notice] %>
+    	<div class="notice"><%= flash[:notice] %></div>
+	<% end %>
+    <h1>Welcome, <%= current_user.email %>!</h1>
+</div>
+
+<div class="userData">
+
+    <%= render 'current_user_artists' %>
+
+    <div>
+        <%= render partial: "access_requests", locals: {requests: @access_requests}  %>
+        <%= render partial: "borrow_requests", locals: {requests: @borrow_requests}  %>
+    </div>
+
+</div>
+
+<br></br>
+
+<div class="links">
+    <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
+    <%= link_to("All Artists", artists_path) %>
+    <%= link_to("All Albums", albums_path) %>
+    <%= link_to("All Users", users_path) %>
+</div>

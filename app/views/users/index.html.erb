@@ -4,17 +4,15 @@
 
 <div class="userData">
 
-    <%= render 'user_artists' %>
-
-    <%= render 'favorite_songs' %>
+<%= render partial: "user_list", locals: {users: @users} %>
 
 </div>
 
 <br></br>
 
 <div class="links">
+    <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
     <%= link_to("All Artists", artists_path) %>
     <%= link_to("All Albums", albums_path) %>
-    <%= link_to("All Users", users_path) %>
     <%= link_to "Home", "/home" %>
 </div>

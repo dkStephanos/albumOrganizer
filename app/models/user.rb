@@ -6,10 +6,17 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
          
   has_many :artists
+  has_many :borrowed_artists, class_name: "Artist", foreign_key: "loaned_user_id"
   has_many :albums, through: :artists
   has_many :songs, through: :albums
   has_many :user_favorite_songs
   has_many :favorite_songs, through: :user_favorite_songs, source: :song
+  has_many :sent_access_requests, class_name: "AccessRequest", foreign_key: "requester_id"
+  has_many :received_access_requests, class_name: "AccessRequest", foreign_key: "requested_id"
+  has_many :borrow_requests
+  has_many :received_borrow_requests, class_name: "BorrowRequest", foreign_key: "requested_user_id"
+
+
          
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
