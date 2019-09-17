@@ -1,11 +1,16 @@
 <div class="userArtistList">
     <h2>Your Artists</h2>
-    <% if current_user.artists.empty? %>
+    <% if current_user.artists.empty? && current_user.borrowed_artists.empty?%>
         <p>No Artists currently added</p>
     <% else %>
         <ul>
             <% current_user.artists.each do |artist| %>
-                <li><%= link_to artist.name, artist_path(artist) %></li>
+                <% if !artist.isLoaned%>
+                    <li><%= link_to artist.name, artist_path(artist) %></li>            
+                <% end %>
+            <% end %>
+            <% current_user.borrowed_artists.each do |artist| %>
+                <li><%= link_to artist.name, artist_path(artist) %></li>            
             <% end %>
         </ul>
     <% end %>
