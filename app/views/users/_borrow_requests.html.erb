@@ -1,0 +1,23 @@
+<div class="requestList">
+    <% if requests.find {|r| r.isAccepted == true} %>
+        <h3>Pending</h3>
+        <ul>
+            <% requests.each do |request| %>
+               <% if request.isAccepted %>
+                    <li>%> </li>
+               <% end %>
+            <% end %>
+        </ul>
+    <% end %>
+    <% if requests.find {|r| r.isAccepted == false} %>
+        <h3>Borrow Requests</h3>
+        <ul>
+            <% requests.each do |request| %>
+                <% if request.isAccepted == false %>
+                    <li>User: <%=Artist.find(request.artist_id).name%>
+                    : <%= link_to "Lend Artist", "/borrow_requests/approve/#{request.id}" %></li>
+                <% end %>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

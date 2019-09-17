@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
     def home
         @access_requests = current_user.received_access_requests
+        @borrow_requests = current_user.received_borrow_requests
     end
 
     def current
