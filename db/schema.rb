@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190917152203) do
+ActiveRecord::Schema.define(version: 20190917154730) do
 
   create_table "access_requests", force: :cascade do |t|
     t.integer "requester_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20190917152203) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean "isLoaned"
+    t.integer "loaned_user_id"
   end
 
   create_table "borrow_requests", force: :cascade do |t|

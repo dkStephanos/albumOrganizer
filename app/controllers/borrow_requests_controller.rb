@@ -19,9 +19,13 @@ class BorrowRequestsController < ApplicationController
 	    end
   	end
 
-  	def approve
+  	def accept
   		borrow_request = BorrowRequest.find(params[:id])
   		borrow_request.isAccepted = true
+  		artist = Artist.find(borrow_request.artist_id)
+  		artist.loaned_user = User.find(borrow_request.user_id)
+  		artist.isLoaned = true
+  		artist.save
   		if borrow_request.save
   			flash[:notice] = 'Request approved.'
 	        redirect_to "/home"

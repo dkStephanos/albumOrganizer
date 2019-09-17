@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
          
   has_many :artists
+  has_many :borrowed_artists, class_name: "Artist", foreign_key: "loaned_user_id"
   has_many :albums, through: :artists
   has_many :songs, through: :albums
   has_many :user_favorite_songs
