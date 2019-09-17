@@ -10,7 +10,7 @@
                 <% end %>
             <% end %>
             <% current_user.borrowed_artists.each do |artist| %>
-                <li><%= link_to artist.name, artist_path(artist) %></li>            
+                <li><%= link_to artist.name, artist_path(artist) %> : <%= link_to "Return", "/borrow_requests/return/#{artist.id}" %></li>            
             <% end %>
         </ul>
     <% end %>

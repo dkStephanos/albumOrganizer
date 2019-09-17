@@ -23,6 +23,7 @@ class BorrowRequestsController < ApplicationController
   		borrow_request = BorrowRequest.find(params[:id])
   		borrow_request.isAccepted = true
   		artist = Artist.find(borrow_request.artist_id)
+  		artist.borrow_request = borrow_request
   		artist.loaned_user = User.find(borrow_request.user_id)
   		artist.isLoaned = true
   		artist.save
@@ -33,5 +34,20 @@ class BorrowRequestsController < ApplicationController
 			flash[:notice] = borrow_request.errors
 	        redirect_to "/home"
 	   	end
+  	end
+
+  	def return
+  		artist = Artist.find(params[:artistId])
+  		borrow_request = artist.borrow_request
+  		artist.isLoaned = false
+  		artist.recentlyReturned = true
+  		artist.loaned_user = nil
+  		artist.save
+  		current_user.borrowed_artists.delete(artist)
+  		borrow_request.destroy
+  		respond_to do |format|
+            flash[:notice] = 'Artist was successfully returned.'
+            format.html { redirect_to "/home" }
+        end
   	end
 end
