@@ -16,6 +16,7 @@ class ArtistsController < ApplicationController
         respond_to do |format|
             format.html { render :index }
             format.json { render json: @artists }
+            #format.json { render :json => {:artists => @artists, :current_user => current_user }}
         end
     end
     

@@ -13,7 +13,11 @@
         <li>
             <img src="{{avatar}}" alt="{{name}}">
             <br>
-            <a href="/artists/{{id}}">{{name}}</a> : <a href="/borrow_requests/new/{{id}}">Borrow</a>
+            <a href="/artists/{{id}}">{{name}}</a>
+            {{#if borrow_request}}
+            {{else}}
+            :   <a href="/borrow_requests/new/{{id}}">Borrow</a> 
+            {{/if}}
         </li>
     {{/each}}
     </ul>
