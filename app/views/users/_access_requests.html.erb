@@ -1,8 +1,6 @@
 <div class="userSongList">
-    <h3>Users with Access</h3>
-    <% if requests.empty? %>
-        <h4>No Users at this time</h4>
-    <% else %>
+    <% if requests.find {|r| r.isApproved == true} %>
+        <h3>Users with Access</h3>
         <ul>
             <% requests.each do |request| %>
                <% if request.isApproved %>
@@ -11,17 +9,14 @@
             <% end %>
         </ul>
     <% end %>
-    <h3>Access Requests</h3>
-    <% if requests.empty? %>
-        <h4>No Access Requests at this time</h4>
-    <% else %>
-
+    <% if requests.find {|r| r.isApproved == false} %>
+        <h3>Access Requests</h3>
         <ul>
             <% requests.each do |request| %>
-               <% if request.isApproved == false %>
+                <% if request.isApproved == false %>
                     <li>User: <%=User.find(request.requester_id).email%>
                     : <%= link_to "Approve", "/access_requests/approve/#{request.id}" %></li>
-               <% end %>
+                <% end %>
             <% end %>
         </ul>
     <% end %>
