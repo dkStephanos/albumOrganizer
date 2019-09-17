@@ -15,7 +15,7 @@
             <% requests.each do |request| %>
                 <% if request.isAccepted == false %>
                     <li>User: <%=Artist.find(request.artist_id).name%>
-                    : <%= link_to "Lend Artist", "/borrow_requests/approve/#{request.id}" %></li>
+                    : <%= link_to "Lend Artist", "/borrow_requests/accept/#{request.id}" %></li>
                 <% end %>
             <% end %>
         </ul>
