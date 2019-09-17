@@ -1,10 +1,10 @@
 <div class="requestList">
     <% if requests.find {|r| r.isAccepted == true} %>
-        <h3>Pending</h3>
+        <h3>On Loan</h3>
         <ul>
             <% requests.each do |request| %>
                <% if request.isAccepted %>
-                    <li>%> </li>
+                    <li><%=Artist.find(request.artist_id).name%> since: <%= request.updated_at.strftime("%d/%m/%Y") %></li>
                <% end %>
             <% end %>
         </ul>
@@ -14,7 +14,7 @@
         <ul>
             <% requests.each do |request| %>
                 <% if request.isAccepted == false %>
-                    <li>User: <%=Artist.find(request.artist_id).name%>
+                    <li><%=Artist.find(request.artist_id).name%>
                     : <%= link_to "Lend Artist", "/borrow_requests/accept/#{request.id}" %></li>
                 <% end %>
             <% end %>
