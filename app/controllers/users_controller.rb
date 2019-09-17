@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     
     def show
         set_user
-        unless current_user.id == @user.id
+        unless current_user.id == @user.id || @user.received_access_requests.any? {|r| r.requester_id == current_user.id && r.isApproved == true}
             flash[:notice] = "You don't have access to that User's Collection!"
             redirect_to "/home" 
             return

@@ -1,13 +1,19 @@
-<div class="artistList">
+<div>
     <h1>Users</h1>
     <% @users.each do |user| %>
     <li>
         <%= link_to user.email, user_path(user) %>
-        <br/>
-       	<% if user.id != current_user.id &&  current_user.sent_access_requests.any? {|r| r.requested_id == user.id } %>
+		
+		<span style="margin-left:30em"></span>
+        
+        <% if user.id != current_user.id && current_user.sent_access_requests.empty?%>
+       			<%=	link_to "Request Access", :controller => "access_requests", :action => "new", :userId => user.id, :currentUserId => current_user.id  %>
+       		<% end %>
+       	<% if user.id != current_user.id && !current_user.sent_access_requests.any? {|r| r.requested_id == user.id } %>
        		<%=	link_to "Request Access", :controller => "access_requests", :action => "new", :userId => user.id, :currentUserId => current_user.id  %>
        	<% end %>
     </li>
 <% end %>
 
 </div>
+
