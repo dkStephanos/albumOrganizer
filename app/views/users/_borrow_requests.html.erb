@@ -4,7 +4,10 @@
         <ul>
             <% requests.each do |request| %>
                <% if request.isAccepted %>
-                    <li><%=Artist.find(request.artist_id).name%> since: <%= request.updated_at.strftime("%d/%m/%Y") %></li>
+                    <li><%=Artist.find(request.artist_id).name%></li>
+                    <ul>
+                    	<li> since: <%= request.updated_at.strftime("%d/%m/%Y") %></li>
+                    </ul>
                <% end %>
             <% end %>
         </ul>
