@@ -19,7 +19,7 @@ gem 'devise_invitable'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
-gem "bootstrap-sass", "~> 3.1.1"
+gem "bootstrap-sass", "~> 3.4.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
